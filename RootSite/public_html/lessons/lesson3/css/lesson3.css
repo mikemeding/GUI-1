@@ -9,6 +9,10 @@ This page is designed to show a simple page that includes some
 handwritten css with good selectors.
 */
 
+/*hover border effect for all images*/
+img:hover {
+    border:1px solid #8C8C8C;
+}
 /*big center imgages*/
 img.center-img {
 	/*makes each image a block with its own alignment properties*/
