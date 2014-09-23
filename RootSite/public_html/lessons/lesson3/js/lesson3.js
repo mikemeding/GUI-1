@@ -8,7 +8,7 @@
 //handwritten css with good selectors and a bit of javascript
 
 
-// loads the page only when all files have been loaded and DOM is complete
+// displays the page only when all files have been loaded and DOM is complete
 function preloader() {
 	document.getElementById("loading").style.display = "none";
 	document.getElementById("content").style.display = "block";
