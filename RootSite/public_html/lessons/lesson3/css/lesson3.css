@@ -9,6 +9,21 @@ This page is designed to show a simple page that includes some
 handwritten css with good selectors.
 */
 
+/*inital content styling*/
+div#content {
+    display: none;
+}
+
+/*adding loading gif*/
+div#loading {             
+    margin-top: 10%;
+	margin-left: 45%;
+    width: 160px;
+    height: 24px;
+    background: url(../img/loadingimage.gif) no-repeat;
+    cursor: wait;                
+}
+
 /*hover border effect for all images*/
 img:hover {
     border:1px solid #8C8C8C;

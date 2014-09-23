@@ -20,27 +20,33 @@ handwritten css with good selectors.
 		<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
 		<!--bring in my css for this lesson-->
 		<link rel="stylesheet" type="text/css" href="css/lesson3.css"> 
+		<!--bring in my javascript-->
+		<script src="js/lesson3.js"></script>
 
 	</head>
 	<body>
-		<!--title and heading-->
-		<h1>Lesson 3</h1>
-		<h3>A short photo blog.</h3>
+		<!--this stuff gets loaded prior to all images-->
+		<div id="loading"></div>
+		<div id="content">
+			<!--title and heading-->
+			<h1>Lesson 3</h1>
+			<h3>A short photo blog.</h3>
 
-		<!--horizontal bar-->
-		<hr /> 
+			<!--horizontal bar-->
+			<hr /> 
 
-		<!--photos (all photos were taken by me so no citations needed)-->
-		<a href="img/IMG_1.jpg"><img class="center-img" src="img/IMG_1.jpg" alt="A picture of a yellow car"></a>
-		<div class="pair-img">
-			<a href="img/IMG_2.jpg"><img class="left-img" src="img/IMG_2.jpg" alt="Another yellow car"></a>
-			<a href="img/IMG_3.jpg"><img class="right-img"	src="img/IMG_3.jpg" alt="Another yellow car"></a>
-		</div>
-		<a href="img/IMG_4.jpg"><img class="center-img" src="img/IMG_4.jpg" alt="Sunset with a boat"></a>
-		<div class="pair-img">
-			<a href="img/IMG_6.jpg"><img class="left-img" src="img/IMG_6.jpg" alt="A bike on the beach"></a>
-			<a href="img/IMG_5.jpg"><img class="right-img" src="img/IMG_5.jpg" alt="A bike in the be"></a>
-		</div>
-		<a href="img/IMG_7.jpg"><img class="center-img" src="img/IMG_7.jpg" alt="Fireworks long exposure"></a>
+			<!--photos (all photos were taken by me so no citations needed)-->
+			<a href="img/IMG_1.jpg"><img class="center-img" src="img/IMG_1.jpg" alt="A picture of a yellow car"></a>
+			<div class="pair-img">
+				<a href="img/IMG_2.jpg"><img class="left-img" src="img/IMG_2.jpg" alt="Another yellow car"></a>
+				<a href="img/IMG_3.jpg"><img class="right-img"	src="img/IMG_3.jpg" alt="Another yellow car"></a>
+			</div>
+			<a href="img/IMG_4.jpg"><img class="center-img" src="img/IMG_4.jpg" alt="Sunset with a boat"></a>
+			<div class="pair-img">
+				<a href="img/IMG_6.jpg"><img class="left-img" src="img/IMG_6.jpg" alt="A bike on the beach"></a>
+				<a href="img/IMG_5.jpg"><img class="right-img" src="img/IMG_5.jpg" alt="A bike in the be"></a>
+			</div>
+			<a href="img/IMG_7.jpg"><img class="center-img" src="img/IMG_7.jpg" alt="Fireworks long exposure"></a>
+		</div> <!-- end of content div -->
 	</body>
 </html>
