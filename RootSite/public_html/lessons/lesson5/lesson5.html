@@ -14,46 +14,63 @@ Instead of loading just simple text I decided to have a JSON file with my photo 
 		<title>Lesson 4</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<!--resets css (this is the meyerweb reset.css script)-->
-		<link rel="stylesheet" type="text/css" href="css/reset.css"> 
+
 		<!--fonts (used the standard google fonts implementation)-->
 		<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
-		<!--bring in my css for this lesson-->
-		<link rel="stylesheet" type="text/css" href="css/lesson3.css"> 
 
+		<!-- Bootstrap core CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+
+		<!--Lightbox core CSS-->
+		<link href="css/lightbox.css" rel="stylesheet" />
+
+		<!--bring in my css for this lesson-->
+		<link rel="stylesheet" type="text/css" href="css/lesson5.css"> 
 
 	</head>
 	<body>
+
+
 		<!--this stuff gets loaded prior to all images-->
 		<div id="loading">
 			<!--I include this heading twice because i alter the visibility of the entire div-->
-			<!--title and heading-->
-			<h1>Lesson 4</h1>
-			<h3>A short photo blog.</h3>
-
+			<div class="row">
+				<!--title and heading-->
+				<h1>Lesson 5</h1>
+				<h3>A short photo blog.</h3>
+			</div>
 			<!--horizontal bar-->
 			<hr /> 
 
-			<!--loading gif-->
+			<!--loading images gif-->
 			<p>Loading images...</p>
-			<img src="img/loadingimage.gif" alt="scrolling load gif">
+			<img src="img/loadingimages.gif" alt="scrolling load gif">
 		</div>
+
+
 		<!--this is the full content of the page-->
 		<div id="content">
-			<!--title and heading-->
-			<h1>Lesson 4</h1>
-			<h3>A short photo blog.</h3>
+			<div class="row">
+				<!--title and heading-->
+				<h1>Mphoto</h1>
+				<h3>A personal photo blog.</h3>
+			</div>
 
 			<!--horizontal bar-->
 			<hr /> 
 
 			<!--my dynamically loaded image area.
 			images info is loaded from a json file then parsed and organized on my page-->
-			<div id='image-area'></div>
+			<div id='image-area'>
+				<a href="img/IMG_1.jpg" data-lightbox="collin-car" data-title="My caption"><img class="center-img" src="img/IMG_1.jpg" alt="A picture of a yellow car"></a>
+				<div class="pair-img">
+					<a href="img/IMG_2.jpg" data-lightbox="collin-car" data-title="collin-car"><img class="left-img" src="img/IMG_2.jpg" alt="Another yellow car"></a>
+					<a href="img/IMG_3.jpg" data-lightbox="collin-car" data-title="collin-car"><img class="right-img"	src="img/IMG_3.jpg" alt="Another yellow car"></a>
+				</div>
+			</div>
+
 			<!--my separate page section to choose what page to look at-->
 			<div id='pagination'></div>
-
-
 
 
 			<!--This was my old format. Manually formatting and inserting photos.-->
@@ -71,8 +88,10 @@ Instead of loading just simple text I decided to have a JSON file with my photo 
 						</div>
 						<a href="img/IMG_7.jpg"><img class="center-img" src="img/IMG_7.jpg" alt="Fireworks long exposure"></a>-->
 
-
-
+			<!--little copyright footer-->
+			<div class="footer">
+				<p class="text-center">&copy; Michael U.B. Meding 2014<img id="hacker-glider" src="img/hacker-glider.png" alt="small hacker glider"></p>
+			</div>
 		</div> <!-- end of content div -->
 
 		<!--JAVASCRIPT INCLUDES-->
@@ -84,7 +103,12 @@ Instead of loading just simple text I decided to have a JSON file with my photo 
 		http://jquery.com/download/
 		-->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+		<!--bring in lightbox javascript-->
+		<script src="js/lightbox.min.js"></script>
+
 		<!--bring in my javascript-->
-		<script src="js/lesson4.js"></script>
+		<script src="js/lesson5.js"></script>
+
 	</body>
 </html>
