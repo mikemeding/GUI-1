@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!-- 
+Michael Meding
+mikeymeding@gmail.com (this is my prefered email)
+Student studying Computer Science at the University of Massachusetts Lowell
+Created on: 09/09/2014
+Course Info: 91.461 GUI programming 1 Jesse M. Heines 
+
+This page is my first dynamically loaded image page using JSON and javascript.
+Instead of loading just simple text I decided to have a JSON file with my photo metadata and have them be dynamically loaded to the page.
+-->
+<html>
+	<head>
+		<title>Lesson 4</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!--resets css (this is the meyerweb reset.css script)-->
+		<link rel="stylesheet" type="text/css" href="css/reset.css"> 
+		<!--fonts (used the standard google fonts implementation)-->
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+		<!--bring in my css for this lesson-->
+		<link rel="stylesheet" type="text/css" href="css/lesson3.css"> 
+
+
+	</head>
+	<body>
+		<!--this stuff gets loaded prior to all images-->
+		<div id="loading">
+			<!--I include this heading twice because i alter the visibility of the entire div-->
+			<!--title and heading-->
+			<h1>Lesson 4</h1>
+			<h3>A short photo blog.</h3>
+
+			<!--horizontal bar-->
+			<hr /> 
+
+			<!--loading gif-->
+			<p>Loading images...</p>
+			<img src="img/loadingimage.gif" alt="scrolling load gif">
+		</div>
+		<!--this is the full content of the page-->
+		<div id="content">
+			<!--title and heading-->
+			<h1>Lesson 4</h1>
+			<h3>A short photo blog.</h3>
+
+			<!--horizontal bar-->
+			<hr /> 
+
+			<!--my dynamically loaded image area.
+			images info is loaded from a json file then parsed and organized on my page-->
+			<div id='image-area'></div>
+			<!--my separate page section to choose what page to look at-->
+			<div id='pagination'></div>
+
+
+
+
+			<!--This was my old format. Manually formatting and inserting photos.-->
+
+			<!--photos (all photos were taken by me so no citations needed)-->
+			<!--			<a href="img/IMG_1.jpg"><img class="center-img" src="img/IMG_1.jpg" alt="A picture of a yellow car"></a>
+						<div class="pair-img">
+							<a href="img/IMG_2.jpg"><img class="left-img" src="img/IMG_2.jpg" alt="Another yellow car"></a>
+							<a href="img/IMG_3.jpg"><img class="right-img"	src="img/IMG_3.jpg" alt="Another yellow car"></a>
+						</div>
+						<a href="img/IMG_4.jpg"><img class="center-img" src="img/IMG_4.jpg" alt="Sunset with a boat"></a>
+						<div class="pair-img">
+							<a href="img/IMG_6.jpg"><img class="left-img" src="img/IMG_6.jpg" alt="A bike on the beach"></a>
+							<a href="img/IMG_5.jpg"><img class="right-img" src="img/IMG_5.jpg" alt="A bike in the be"></a>
+						</div>
+						<a href="img/IMG_7.jpg"><img class="center-img" src="img/IMG_7.jpg" alt="Fireworks long exposure"></a>-->
+
+
+
+		</div> <!-- end of content div -->
+
+		<!--JAVASCRIPT INCLUDES-->
+		<!--
+	 load jQuery library from the Google Content Delivery Network (CDN)
+	 see http://encosia.com/3-reasons-why-you-should-let-google-host-jquery-for-you/
+	 however, note that you obviously must be online for this to work
+	 alternatively, you can download jQuery and store it locally from
+		http://jquery.com/download/
+		-->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!--bring in my javascript-->
+		<script src="js/lesson4.js"></script>
+	</body>
+</html>
