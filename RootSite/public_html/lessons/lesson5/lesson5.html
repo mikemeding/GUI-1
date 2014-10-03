@@ -11,7 +11,7 @@ Instead of loading just simple text I decided to have a JSON file with my photo 
 -->
 <html>
 	<head>
-		<title>Lesson 4</title>
+		<title>Mphoto</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -30,69 +30,101 @@ Instead of loading just simple text I decided to have a JSON file with my photo 
 	</head>
 	<body>
 
-
-		<!--this stuff gets loaded prior to all images-->
-		<div id="loading">
-			<!--I include this heading twice because i alter the visibility of the entire div-->
-			<div class="row">
-				<!--title and heading-->
-				<h1>Lesson 5</h1>
-				<h3>A short photo blog.</h3>
-			</div>
-			<!--horizontal bar-->
-			<hr /> 
-
-			<!--loading images gif-->
-			<p>Loading images...</p>
-			<img src="img/loadingimages.gif" alt="scrolling load gif">
-		</div>
-
-
-		<!--this is the full content of the page-->
-		<div id="content">
-			<div class="row">
-				<!--title and heading-->
-				<h1>Mphoto</h1>
-				<h3>A personal photo blog.</h3>
-			</div>
-
-			<!--horizontal bar-->
-			<hr /> 
-
-			<!--my dynamically loaded image area.
-			images info is loaded from a json file then parsed and organized on my page-->
-			<div id='image-area'>
-				<a href="img/IMG_1.jpg" data-lightbox="collin-car" data-title="My caption"><img class="center-img" src="img/IMG_1.jpg" alt="A picture of a yellow car"></a>
-				<div class="pair-img">
-					<a href="img/IMG_2.jpg" data-lightbox="collin-car" data-title="collin-car"><img class="left-img" src="img/IMG_2.jpg" alt="Another yellow car"></a>
-					<a href="img/IMG_3.jpg" data-lightbox="collin-car" data-title="collin-car"><img class="right-img"	src="img/IMG_3.jpg" alt="Another yellow car"></a>
+		<div class="container">
+			<!--this stuff gets loaded prior to all images-->
+			<div id="loading">
+				<!--I include this heading twice because i alter the visibility of the entire div-->
+				<div class="row">
+					<!--title and heading-->
+					<h1>Lesson 5</h1>
+					<h3>A short photo blog.</h3>
 				</div>
+				<!--horizontal bar-->
+				<hr /> 
+
+				<!--loading images gif-->
+				<p>Loading images...</p>
+				<img src="img/loadingimages.gif" alt="scrolling load gif">
 			</div>
 
-			<!--my separate page section to choose what page to look at-->
-			<div id='pagination'></div>
+
+			<!--this is the full content of the page-->
+			<div id="content">
+				<div class="row">
+					<!--title and heading-->
+					<h1>Mphoto</h1>
+					<h3>A personal photo blog.</h3>
+				</div>
+
+				<!--horizontal bar-->
+				<hr /> 
+
+				<!--responsive dual images-->
+				<div class="row">
+					<div class="col-lg-6 col-sm-6">
+						<a href="img/IMG_2.jpg" data-lightbox="collin-car" data-title="a yellow car">
+							<img class="img-rounded img-responsive" src="img/IMG_2.jpg" alt="Another yellow car">
+						</a>
+					</div>
+					<div class="col-lg-6 col-sm-6">
+						<a href="img/IMG_3.jpg" data-lightbox="collin-car" data-title="collin-car">
+							<img class="img-rounded img-responsive" src="img/IMG_3.jpg" alt="Another yellow car">
+						</a>
+					</div>
+				</div>
+
+				<!--horizontal bar-->
+				<hr />
+
+				<!--responsive quad images-->
+				<div class="row">
+					<div class="col-lg-3 col-sm-3">
+						<a href="img/IMG_6.jpg" data-lightbox="cycling" data-title="On the beach!">
+							<img class="img-rounded img-responsive" src="img/IMG_6.jpg" alt="A bike on the beach">
+						</a>
+					</div>
+					<div class="col-lg-3 col-sm-3">
+						<a href="img/IMG_5.jpg" data-lightbox="cycling" data-title="blah">
+							<img class="img-rounded img-responsive" src="img/IMG_5.jpg" alt="A bike in the be">
+						</a>
+					</div>
+					<div class="col-lg-3 col-sm-3">
+						<a href="img/IMG_1.jpg" data-lightbox="cycling" data-title="blah">
+							<img class="img-rounded img-responsive" src="img/IMG_1.jpg" alt="A picture of a yellow car">
+						</a>
+					</div>
+					<div class="col-lg-3 col-sm-3">
+						<a href="img/IMG_4.jpg" data-lightbox="cycling" data-title="blah">
+							<img class="img-rounded img-responsive" src="img/IMG_4.jpg" alt="Sunset with a boat">
+						</a>
+					</div>
+				</div>
+
+				<!--my separate page section to choose what page to look at-->
+				<div id='pagination'></div>
 
 
-			<!--This was my old format. Manually formatting and inserting photos.-->
+				<!--This was my old format. Manually formatting and inserting photos.-->
 
-			<!--photos (all photos were taken by me so no citations needed)-->
-			<!--			<a href="img/IMG_1.jpg"><img class="center-img" src="img/IMG_1.jpg" alt="A picture of a yellow car"></a>
-						<div class="pair-img">
-							<a href="img/IMG_2.jpg"><img class="left-img" src="img/IMG_2.jpg" alt="Another yellow car"></a>
-							<a href="img/IMG_3.jpg"><img class="right-img"	src="img/IMG_3.jpg" alt="Another yellow car"></a>
-						</div>
-						<a href="img/IMG_4.jpg"><img class="center-img" src="img/IMG_4.jpg" alt="Sunset with a boat"></a>
-						<div class="pair-img">
-							<a href="img/IMG_6.jpg"><img class="left-img" src="img/IMG_6.jpg" alt="A bike on the beach"></a>
-							<a href="img/IMG_5.jpg"><img class="right-img" src="img/IMG_5.jpg" alt="A bike in the be"></a>
-						</div>
-						<a href="img/IMG_7.jpg"><img class="center-img" src="img/IMG_7.jpg" alt="Fireworks long exposure"></a>-->
+				<!--photos (all photos were taken by me so no citations needed)-->
+				<!--			<a href="img/IMG_1.jpg"><img class="center-img" src="img/IMG_1.jpg" alt="A picture of a yellow car"></a>
+							<div class="pair-img">
+								<a href="img/IMG_2.jpg"><img class="left-img" src="img/IMG_2.jpg" alt="Another yellow car"></a>
+								<a href="img/IMG_3.jpg"><img class="right-img"	src="img/IMG_3.jpg" alt="Another yellow car"></a>
+							</div>
+							<a href="img/IMG_4.jpg"><img class="center-img" src="img/IMG_4.jpg" alt="Sunset with a boat"></a>
+							<div class="pair-img">
+								<a href="img/IMG_6.jpg"><img class="left-img" src="img/IMG_6.jpg" alt="A bike on the beach"></a>
+								<a href="img/IMG_5.jpg"><img class="right-img" src="img/IMG_5.jpg" alt="A bike in the be"></a>
+							</div>
+							<a href="img/IMG_7.jpg"><img class="center-img" src="img/IMG_7.jpg" alt="Fireworks long exposure"></a>-->
 
-			<!--little copyright footer-->
-			<div class="footer">
-				<p class="text-center">&copy; Michael U.B. Meding 2014<img id="hacker-glider" src="img/hacker-glider.png" alt="small hacker glider"></p>
-			</div>
-		</div> <!-- end of content div -->
+				<!--little copyright footer-->
+				<div class="footer">
+					<p class="text-center">&copy; Michael U.B. Meding 2014<img id="hacker-glider" src="img/hacker-glider.png" alt="small hacker glider"></p>
+				</div>
+			</div> <!-- end of content div -->
+		</div> <!-- end of bootstrap container -->
 
 		<!--JAVASCRIPT INCLUDES-->
 		<!--

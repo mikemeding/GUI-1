@@ -12,6 +12,25 @@
 function preloader() {
 	document.getElementById("loading").style.display = "none";
 	document.getElementById("content").style.display = "block";
+	getImageData();
 }
 window.onload = preloader;
+
+/*
+ * Get image data from imageInfo.json 
+ */
+function getImageData() {
+	var story;
+	jQuery.ajax({
+		async: false,
+		dataType: "json",
+		url: "imageInfo.json",
+		success: function(data) {
+			story = data;
+		}
+	});
+
+	console.log(story);
+}
+
 
