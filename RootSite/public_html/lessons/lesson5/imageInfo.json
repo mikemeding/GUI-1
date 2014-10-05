@@ -3,24 +3,21 @@
 		{
 			"images": [
 				{
-					"id": 1,
 					"fileName": "IMG_1.jpg",
 					"fullPath": "img/IMG_1.jpg",
-					"orientation": "center",
+					"setName": "collins-car",
 					"description": "A yellow car in the snow."
 				},
 				{
-					"id": 2,
 					"fileName": "IMG_2.jpg",
 					"fullPath": "img/IMG_2.jpg",
-					"orientation": "left",
+					"setName": "collins-car",
 					"description": "Another yellow car."
 				},
 				{
-					"id": 3,
 					"fileName": "IMG_3.jpg",
 					"fullPath": "img/IMG_3.jpg",
-					"orientation": "right",
+					"setName": "collins-car",
 					"description": "Another yellow car."
 				}
 			]
@@ -28,11 +25,9 @@
 		{
 			"images": [
 				{
-					"id": 4,
-					"fileName": "IMG_1.jpg",
-					"fullPath": "img/IMG_1.jpg",
-					"orientation": "center",
-					"description": "A yellow car in the snow."
+					"fileName": "IMG_4.jpg",
+					"fullPath": "img/IMG_4.jpg",
+					"description": "Boat moored at sunset."
 				}
 			]
 		}
