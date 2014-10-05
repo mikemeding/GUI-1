@@ -1,6 +1,6 @@
 {
-	"pages": [{
-			"pageNo": 1,
+	"pages": [
+		{
 			"images": [
 				{
 					"id": 1,
@@ -24,5 +24,17 @@
 					"description": "Another yellow car."
 				}
 			]
-		}]
+		},
+		{
+			"images": [
+				{
+					"id": 4,
+					"fileName": "IMG_1.jpg",
+					"fullPath": "img/IMG_1.jpg",
+					"orientation": "center",
+					"description": "A yellow car in the snow."
+				}
+			]
+		}
+	]
 }
