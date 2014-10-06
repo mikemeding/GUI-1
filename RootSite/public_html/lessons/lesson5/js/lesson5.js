@@ -31,7 +31,7 @@ function getImageData() {
 		async: false,
 		dataType: "json",
 		url: "imageInfo.json",
-		success: function (data) {
+		success: function(data) {
 			loadImageData(data.pages);
 		}
 	});
@@ -56,11 +56,11 @@ function loadImageData(data) {
 	var dualImageDiv = document.createElement("div");
 
 
-	$.each(data, function (index, element) { // load each page
+	$.each(data, function(index, element) { // load each page
 
 		var i = 0;
 		for (i = 0; i < element.images.length; i++) { // load all corresponding images
-			if (i + 1 !== element.images.length) {
+			if (i + 1 < element.images.length) {
 				loadDualImage(element.images[i], element.images[i + 1]);
 				i++; // add extra as we are loading 2 images
 			} else {
@@ -80,7 +80,7 @@ function loadImageData(data) {
 			var formatDiv = document.createElement("div");
 
 			// image row div
-			dualImageDiv.setAttribute("class", "row");
+			singleImageDiv.setAttribute("class", "row");
 
 			// div for dual image display
 			formatDiv.setAttribute("class", "col-lg-12 col-sm-12");

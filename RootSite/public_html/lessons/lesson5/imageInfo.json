@@ -27,7 +27,26 @@
 				{
 					"fileName": "IMG_4.jpg",
 					"fullPath": "img/IMG_4.jpg",
+					"setName": "outdoor",
 					"description": "Boat moored at sunset."
+				},
+				{
+					"fileName": "IMG_5.jpg",
+					"fullPath": "img/IMG_5.jpg",
+					"setName": "outdoor",
+					"description": "The smell of fresh cut grass."
+				},
+				{
+					"fileName": "IMG_6.jpg",
+					"fullPath": "img/IMG_6.jpg",
+					"setName": "outdoor",
+					"description": "Rode to the beach."
+				},
+				{
+					"fileName": "IMG_7.jpg",
+					"fullPath": "img/IMG_7.jpg",
+					"setName": "outdoor",
+					"description": "Rode to the beach."
 				}
 			]
 		}
