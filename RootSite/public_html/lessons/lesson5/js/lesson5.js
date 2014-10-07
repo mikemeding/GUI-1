@@ -185,8 +185,5 @@ function loadImageData(data) {
 		return quadImageContent;
 	}
 
-
-
-
 }
 
