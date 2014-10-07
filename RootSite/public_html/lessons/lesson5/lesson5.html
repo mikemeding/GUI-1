@@ -47,11 +47,20 @@ Instead of loading just simple text I decided to have a JSON file with my photo 
 				<img src="img/loadingimages.gif" alt="scrolling load gif">
 			</div>
 
-			<!--this is the full content of the page loaded from javascript-->
-			<div id="content"></div>
+			<div id="display-area" class="hidden">
+				<!--content area underneath banner-->	
+				<div class="row">
+					<div class="col-lg-10 col-md-10 col-sm-10">
+						<!--this is the full content of the page loaded from javascript-->
+						<div id="content"></div>
+					</div>
 
-			<!--my separate page section bar to choose what page to look at-->
-			<div id='pagination'></div>
+					<div class="col-lg-2 col-md-2 col-sm-2">
+						<!--side navigator bar-->
+						<div id="navigator"></div>
+					</div>
+				</div>
+			</div>
 
 			<!--little copyright footer-->
 			<div class="footer">
@@ -70,6 +79,9 @@ Instead of loading just simple text I decided to have a JSON file with my photo 
 		http://jquery.com/download/
 		-->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+		<!--bootstrap javascript!-->
+		<script src="js/bootstrap.min.js"></script>
 
 		<!--bring in lightbox javascript photo modals-->
 		<script src="js/lightbox.min.js"></script>

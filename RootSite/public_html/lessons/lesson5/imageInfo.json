@@ -1,52 +1,57 @@
 {
 	"pages": [
 		{
+			"pageName": "Traveling",
 			"images": [
 				{
-					"fileName": "IMG_1.jpg",
-					"fullPath": "img/IMG_1.jpg",
-					"setName": "collins-car",
-					"description": "A yellow car in the snow."
-				},
-				{
-					"fileName": "IMG_2.jpg",
-					"fullPath": "img/IMG_2.jpg",
-					"setName": "collins-car",
-					"description": "Another yellow car."
-				},
-				{
-					"fileName": "IMG_3.jpg",
-					"fullPath": "img/IMG_3.jpg",
-					"setName": "collins-car",
-					"description": "Another yellow car."
-				}
-			]
-		},
-		{
-			"images": [
-				{
-					"fileName": "IMG_4.jpg",
 					"fullPath": "img/IMG_4.jpg",
 					"setName": "outdoor",
-					"description": "Boat moored at sunset."
+					"description": "Boat moored at sunset on the vineyard."
 				},
 				{
-					"fileName": "IMG_5.jpg",
 					"fullPath": "img/IMG_5.jpg",
 					"setName": "outdoor",
 					"description": "The smell of fresh cut grass."
 				},
 				{
-					"fileName": "IMG_6.jpg",
 					"fullPath": "img/IMG_6.jpg",
 					"setName": "outdoor",
-					"description": "Rode to the beach."
+					"description": "Cape Cod."
 				},
 				{
-					"fileName": "IMG_7.jpg",
 					"fullPath": "img/IMG_7.jpg",
 					"setName": "outdoor",
-					"description": "Rode to the beach."
+					"description": "Rhode Island on the 4th of July."
+				},
+				{
+					"fullPath": "img/IMG_3267.jpg",
+					"setName": "outdoor",
+					"description": "lol. dinghies."
+				},
+				{
+					"fullPath": "img/IMG_3450.jpg",
+					"setName": "outdoor",
+					"description": "Marthas Vineyard"
+				}
+			]
+		},
+		{
+			"pageName": "CollinsCar",
+			"images": [
+				{
+					"fullPath": "img/IMG_1.jpg",
+					"setName": "collins-car",
+					"description": "My friend collin's bugeye WRX"
+				},
+				{
+					"fullPath": "img/IMG_2.jpg",
+					"setName": "collins-car",
+					"description": "Hanging around Nashua NH."
+				},
+				{
+					"fullPath": "img/IMG_3.jpg",
+					"setName": "collins-car",
+					"description": "Scrub a dub."
 				}
 			]
 		}
