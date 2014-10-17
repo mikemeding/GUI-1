@@ -1,0 +1,67 @@
+<!--<!DOCTYPE html>-->
+<!-- 
+Michael Meding
+mikeymeding@gmail.com (this is my prefered email)
+Student studying Computer Science at the University of Massachusetts Lowell
+Created on: 09/09/2014
+Course Info: 91.461 GUI programming 1 Jesse M. Heines 
+
+This file just holds the structure of the form that is to be loaded to the page
+THIS FILE ASSUMES THAT IT IS TO BE LOADED TO A PAGE WITH BOOTSTRAP JQUERY.
+-->
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+	Launch modal
+</button>
+
+<!--Form Modal-->
+<div id="myModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title">Multiplication Table Form</h4>
+			</div>
+			<div class="modal-body">
+
+				<div class="row">
+					<div class="col-lg-12">
+						<form role="form">
+
+							<!--multiplier-->
+							<h3>Multiplier<small> top row</small></h3>
+							<div class="form-group">
+								<label for="start1">start value</label>
+								<input id="startVal1" type="number" class="form-control" id="start1" placeholder="#">
+							</div>
+							<div class="form-group">
+								<label for="start2">end value</label>
+								<input id="endVal2" type="number" class="form-control" id="start2" placeholder="#">
+							</div>
+
+							<!--multiplicand-->	
+							<h3>Multiplicand<small> left column</small></h3>
+							<div class="form-group">
+								<label for="start3">start value</label>
+								<input id="startVal3" type="number" class="form-control" id="start3" placeholder="#">
+							</div>
+							<div class="form-group">
+								<label for="start4">end value</label>
+								<input id="endVal4" type="number" class="form-control" id="start4" placeholder="#">
+							</div>	
+
+						</form>
+					</div>
+				</div>
+
+
+
+
+			</div>
+			<div class="modal-footer">
+				<!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+				<button id="formSubmit" type="button" class="btn btn-primary">Submit</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

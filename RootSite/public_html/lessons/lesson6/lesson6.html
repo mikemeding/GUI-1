@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- 
+Michael Meding
+mikeymeding@gmail.com (this is my prefered email)
+Student studying Computer Science at the University of Massachusetts Lowell
+Created on: 09/09/2014
+Course Info: 91.461 GUI programming 1 Jesse M. Heines 
+
+This page takes user data from a form using a modal then creates and formats a table based on that data
+-->
+<html>
+	<head>
+		<title>Form Table</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!--fonts (used the standard google fonts implementation)-->
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+
+		<!-- Bootstrap core CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+
+		<!--bring in my css for this lesson-->
+		<link rel="stylesheet" type="text/css" href="css/lesson6.css"> 
+
+		<!--JAVASCRIPT INCLUDES-->
+		<!--
+	 load jQuery library from the Google Content Delivery Network (CDN)
+	 see http://encosia.com/3-reasons-why-you-should-let-google-host-jquery-for-you/
+	 however, note that you obviously must be online for this to work
+	 alternatively, you can download jQuery and store it locally from
+		http://jquery.com/download/
+		-->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+		<!--bootstrap javascript!-->
+		<script src="js/bootstrap.min.js"></script>
+
+		<!--load form to page-->
+		<script>
+			$(function() {
+				$("#myTable").load("form.html");
+			});
+		</script>
+
+	</head>
+	<body>
+		<div class="container">
+			<!--heading-->
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="text-center">Form Data<small> from modal</small></h1>
+				</div>
+			</div>
+
+			<!--my generated table-->
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="myTable"></div>
+				</div>	
+			</div>
+
+
+
+
+			<!--little copyright footer-->
+			<div class="footer">
+				<p class="text-center">&copy; Michael U.B. Meding 2014<img id="hacker-glider" src="img/hacker-glider.png" alt="small hacker glider"></p>
+			</div>
+		</div>
+
+
+
+		<!--my javascript-->
+		<script src="js/lesson6.js"></script>
+
+	</body>
+</html>
