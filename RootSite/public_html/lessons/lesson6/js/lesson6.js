@@ -6,14 +6,42 @@
 //
 // This is the javascript to support the lesson6 page
 
+var validation = function(event) {
+	// preform validation here
+	console.log("submit clicked");
+
+	// get the value from all fields
+	var startVal1 = $("#startVal1").val();
+	var endVal1 = $("#endVal1").val();
+	var startVal2 = $("#startVal2").val();
+	var endVal2 = $("#endVal2").val();
+	var errorMessage = "The red highlighted fields have errors: ";
+	var errorOccurred = false;
+
+	console.log(startVal1 + " " + endVal1 + " " + startVal2 + " " + endVal2);
+
+		// if one of the fields does not have a value
+		if (!$.isNumeric(startVal1)) {
+			$("#startVal1Group").addClass("has-error");
+			errorMessage += "Multiplier(start value) ";
+			errorOccurred = true;
+		}
+
+
+if(errorOccurred){
+	$("#multForm-error").removeClass("hidden");
+	$("#multForm-errorMessage").html(errorMessage);
+}
+//		$("#myModal").modal('hide');
+
+};
+
 // when DOM is finished and everything is loaded
-$("#myModal").modal('show');
-console.log("modal display");
-
-
-$("#formSubmit").click(function() {
-	console.log("form submit clicked");
-	$("#myModal").modal('hide');
-	var number = $("#startVal1").val();
-	console.log(number);
+$(document).ready(function(event) {
+	console.log("modal display");
+	$("#myModal").modal('show');
 });
+
+$("#multForm").submit(validation);
+
+

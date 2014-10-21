@@ -36,13 +36,6 @@ This page takes user data from a form using a modal then creates and formats a t
 		<!--bootstrap javascript!-->
 		<script src="js/bootstrap.min.js"></script>
 
-		<!--load form to page-->
-		<script>
-			$(function() {
-				$("#myTable").load("form.html");
-			});
-		</script>
-
 	</head>
 	<body>
 		<div class="container">
@@ -56,7 +49,72 @@ This page takes user data from a form using a modal then creates and formats a t
 			<!--my generated table-->
 			<div class="row">
 				<div class="col-lg-12">
-					<div id="myTable"></div>
+					<div id="myTable">
+
+						<!-- Button trigger modal -->
+						<!--						<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+													Launch modal
+												</button>-->
+
+						<!--Form Modal-->
+						<div id="myModal" class="modal fade">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+										<h3 class="modal-title">Multiplication Table Form</h3>
+									</div>
+									<div class="modal-body">
+
+										<div class="row">
+											<div class="col-lg-12">
+												<!--form with prevent default reload page-->
+												<form role="form" id="multForm" action="javascript:void(0)">
+													
+													<!--hidden alert message window-->
+													<div id="multForm-error" class="alert alert-danger hidden" role="alert"><p id="multForm-errorMessage"></p></div>
+
+													<!--multiplier-->
+													<h3>Multiplier<small> top row</small></h3>
+
+													<div id="startVal1Group" class="form-group">
+														<label for="startVal1">start value</label>
+														<input id="startVal1" type="text" class="form-control" placeholder="#">
+													</div>
+													<div id="endVal1Group" class="form-group">
+														<label for="endVal1">end value</label>
+														<input id="endVal1" type="text" class="form-control" placeholder="#">
+													</div>
+													<!--multiplicand-->
+													<h3>Multiplicand<small> left column</small></h3>
+
+													<div id="startVal2Group" class="form-group">
+														<label for="startVal2">start value</label>
+														<input id="startVal2" type="text" class="form-control" placeholder="#">
+													</div>
+													<div id="endVal2Group" class="form-group">
+														<label for="endVal2">end value</label>
+														<input id="endVal2" type="text" class="form-control" placeholder="#">
+													</div>
+
+													<button type="submit" class="btn btn-default">Submit</button>
+												</form>
+											</div>
+										</div>
+
+									</div>
+
+
+
+									<!--modal content-->
+								</div>
+								<!--modal dialog-->
+							</div> 
+							<!--modal-->
+						</div>
+
+					</div>
+
 				</div>	
 			</div>
 
@@ -68,6 +126,7 @@ This page takes user data from a form using a modal then creates and formats a t
 				<p class="text-center">&copy; Michael U.B. Meding 2014<img id="hacker-glider" src="img/hacker-glider.png" alt="small hacker glider"></p>
 			</div>
 		</div>
+
 
 
 
