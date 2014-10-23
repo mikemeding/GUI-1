@@ -1,0 +1,26 @@
+/*
+Michael Meding
+mikeymeding@gmail.com (this is my prefered email)
+Student studying Computer Science at the University of Massachusetts Lowell
+Created on: 09/09/2014
+Course Info: 91.461 GUI programming 1 Jesse M. Heines 
+
+This page is designed to show a simple page that includes some 
+handwritten css with good selectors.
+*/
+/*little hacker glider footer mod*/
+#hacker-glider {
+	width: 25px;
+	height: auto;
+	padding: 1px;
+}
+/*google doc iframe integration*/
+#resumeDoc {
+	width: 99.6%;
+	height: 480px;
+}
+/*youtube iframe integration*/
+#youtubeVid {
+	width: 100%;
+	height: 300px;
+}

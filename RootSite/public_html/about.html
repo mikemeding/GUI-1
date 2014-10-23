@@ -1,0 +1,104 @@
+<!-- 
+Michael Meding
+mikeymeding@gmail.com (this is my prefered email)
+Student studying Computer Science at the University of Massachusetts Lowell
+Created on: 09/09/2014
+Course Info: 91.461 GUI programming 1 Jesse M. Heines 
+
+This file is just a description of myself and some links
+
+Additionally, I used twitter bootstrap for my CSS as it makes for a quick and decent looking
+website without too much hassle. There are also some other JS files which include
+the rest of the fancy bootstrap dynamic stuff. Using bootstrap also maintains
+uniformity across all browsers which is a major plus, although less important 
+for this first simple site.
+-->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Michael Meding 91.461 Index</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+
+		<!--include my custom css-->
+		<link href="css/root-site.css" rel="stylesheet">
+
+		<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+		<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+		<script src="js/ie-emulation-modes-warning.js"></script>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="container">
+
+			<!--The navigation bar at the top of the site-->
+			<div class="row">
+				<nav class="navbar navbar-default navbar-static-top" role="navigation">
+					<ul class="nav navbar-nav">
+						<li><a href="index.html">Home</a></li>
+						<li><a href="lessons.html">Lessons</a></li>
+						<li class="active"><a href="about.html">About</a></li>
+					</ul>
+				</nav>
+			</div>
+
+			<!--extended intro with an interesting picture-->
+			<div class="row">
+				<div class="col-lg-6">
+					<h2 class="text-center">Who am I?</h2>
+
+					<h4>Hello, My name is Michael Meding</h4>
+					<p>or just Mike for short. I'm a Computer Science major at UMass Lowell and enjoy many disciplines of programming including web-coding. </p>
+					<h4>Hobbies?</h4>
+					<p>In my spare time I am an avid cyclist often riding hundreds of miles a week. If I'm not in front of my PC I'm lost somewhere out on a ride.</p>
+					<p>In addition to cycling, I also play around with an firmware based coding such as the arduino.</p>
+					<h4>Little arduino project I did</h4>
+					<iframe id="youtubeVid" width="560" height="315" src="//www.youtube.com/embed/GsVx6v49Ljw" frameborder="0" allowfullscreen></iframe>
+					<h4>How did you get started?</h4>
+					<p>I really got interested in programming when I started working at this company called Outsmart. When I started I was working on the product
+						assembly line churning out little plastic devices all day. Luckily, as production started to slow down I was moved to writing small scripts to 
+						automate some of the manufacturing tests/processes. From there it was a downward spiral until I was drinking 5 cups of coffee a day and churning
+						out thousands upon thousands of lines of enterprise code.</p>
+				</div>
+
+
+
+				<!--left aligned photo-->
+				<div class="col-lg-6">
+					<img src="img/snorkeling.jpg" alt="A Photo of Michael Meding" class="img-rounded img-responsive">
+				</div>
+
+				<!--google docs iframe embed-->
+				<div class="row">
+					<div class="col-lg-12">
+						<h4>My Resume</h4>
+						<iframe id="resumeDoc" src="https://docs.google.com/file/d/0BziXFjzEtQPtRWM3bjZyLXlqbkU/preview" ></iframe>	
+					</div>
+				</div>
+			</div>
+
+			<!--little copyright footer-->
+			<div class="footer">
+				<p class="text-center">&copy; Michael U.B. Meding 2014<img id="hacker-glider" src="img/hacker-glider.png" alt="small hacker glider"></p>
+			</div>
+
+		</div> <!-- /container -->
+
+		<!--JAVASCRIPT INCLUES-->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/siteRoot.js"></script>
+
+	</body>
+</html>
