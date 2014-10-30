@@ -47,40 +47,49 @@ for this first simple site.
 
 			<!--The navigation bar at the top of the site-->
 			<div class="row">
-				<nav class="navbar navbar-default navbar-static-top" role="navigation">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="index.html">Home</a></li>
-						<li><a href="lessons.html">Lessons</a></li>
-						<li><a href="about.html">About</a></li>
-					</ul>
-				</nav>
+				<ul class="nav nav-tabs" role="tablist" id="mainTabs">
+					<li class="active"><a id="tabHome" href="#home" role="tab" data-toggle="tab">Home</a></li>
+					<li><a id="tabLessons" href="#lessons" role="tab" data-toggle="tab">Lessons</a></li>
+					<li><a id="tabAbout" href="#about" role="tab" data-toggle="tab">About</a></li>
+				</ul>
 			</div>
 
-			<!--This is the welcome banner with a link to the course website-->
-			<div class="row jumbotron well">
-				<h1>Welcome!</h1>
-				<p class="lead">This site indexes all of my course lessons associated with 91.461 GUI Programming 1 with Professor Jesse M. Heines. </p>
-				<p><a class="btn btn-lg btn-success" href="https://teaching.cs.uml.edu/~heines/91.461/91.461-2014-15f/461home.jsp" role="button">Course Website</a></p>
-			</div>
-
-			<!--Basic introduction with a photo.-->
+			<!--the tab content area dynamically loaded content--> 
 			<div class="row">
-				<div class="col-lg-6">
-					<h2 class="text-center">Who am I?</h2>
-
-					<h4>Hello, My name is Michael Meding</h4>
-					<p>or just Mike for short. I'm a Computer Science major at UMass Lowell and enjoy many disciplines of programming including web-coding. </p>
-					<h4>Why did I choose this class?</h4>
-					<p>I wanted to take programming class where I could express myself. I program in Java and C every day and yet I find a certain elegance
-						in the unbound nature of front end web programming. </p>
-
-				</div>
-
-				<!--left aligned photo-->
-				<div class="col-lg-6">
-					<img src="img/profile-pic.jpg" alt="A Photo of Michael Meding" class="img-rounded img-responsive">
+				<div class="tab-content">
+					<div class="tab-pane fade in active" id="home"></div>
+					<div class="tab-pane fade " id="lessons"></div>
+					<div class="tab-pane fade " id="about"></div>
 				</div>
 			</div>
+
+
+
+			<!--			This is the welcome banner with a link to the course website
+						<div class="row jumbotron well">
+							<h1>Welcome!</h1>
+							<p class="lead">This site indexes all of my course lessons associated with 91.461 GUI Programming 1 with Professor Jesse M. Heines. </p>
+							<p><a class="btn btn-lg btn-success" href="https://teaching.cs.uml.edu/~heines/91.461/91.461-2014-15f/461home.jsp" role="button">Course Website</a></p>
+						</div>
+			
+						Basic introduction with a photo.
+						<div class="row">
+							<div class="col-lg-6">
+								<h2 class="text-center">Who am I?</h2>
+			
+								<h4>Hello, My name is Michael Meding</h4>
+								<p>or just Mike for short. I'm a Computer Science major at UMass Lowell and enjoy many disciplines of programming including web-coding. </p>
+								<h4>Why did I choose this class?</h4>
+								<p>I wanted to take programming class where I could express myself. I program in Java and C every day and yet I find a certain elegance
+									in the unbound nature of front end web programming. </p>
+			
+							</div>
+			
+							left aligned photo
+							<div class="col-lg-6">
+								<img src="img/profile-pic.jpg" alt="A Photo of Michael Meding" class="img-rounded img-responsive">
+							</div>
+						</div>-->
 
 			<!--little copyright footer-->
 			<div class="footer">
@@ -88,6 +97,22 @@ for this first simple site.
 			</div>
 
 		</div> <!-- /container -->
+
+		<!--JAVASCRIPT INCLUDES-->
+		<!--
+	 load jQuery library from the Google Content Delivery Network (CDN)
+	 see http://encosia.com/3-reasons-why-you-should-let-google-host-jquery-for-you/
+	 however, note that you obviously must be online for this to work
+	 alternatively, you can download jQuery and store it locally from
+		http://jquery.com/download/
+		-->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+		<!--bootstrap javascript!-->
+		<script src="js/bootstrap.min.js"></script>
+
+		<!--MY JAVASCRIPT-->
+		<script src="js/siteRoot.js"></script>
 
 	</body>
 </html>
