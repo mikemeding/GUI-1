@@ -4,34 +4,41 @@
 //Created on: 09/09/2014
 //Course Info: 91.461 GUI programming 1 Jesse M. Heines 
 //
-$(document).ready(function() {
-	// trigger an inital click to load home page
-	$('#tabHome').trigger("click");
+$(document).ready(function() { // Triggered when DOM ready
+	// change hashcode to home page
+	var hash = "#home";
+	location.hash = hash;
+	// load that page
+	navigate();
 });
-$('#tabHome').click(function(e) {
-	e.preventDefault();
-	// dynamically load on click
-	$("#home").load("indexInfo.html", function() {
-		console.log("loaded indexInfo.html");
-		// show tab once loaded
-		$(this).tab('show');
-	});
-});
-$('#tabLessons').click(function(e) {
-	e.preventDefault();
-	$("#lessons").load("lessonsInfo.html", function() {
-		console.log("loaded lessonsInfo.html");
-		// show tab once loaded
-		$(this).tab('show');
-	});
-});
-$('#tabAbout').click(function(e) {
-	e.preventDefault();
-	$("#about").load("aboutInfo.html", function() {
-		console.log("loaded aboutInfo.html");
-		// show tab once loaded
-		$(this).tab('show');
-	});
-	$(this).tab('show');
+
+/**
+ * When the hashcode URL changes load that page
+ */
+function navigate() {
+	var hash = location.hash;
+	fragmentId = location.hash.substr(1); // strip off # from hash
+	// fetch content and load to tab
+	if (fragmentId === "home" || !fragmentId) { // for home or no fragment
+		$(hash).load("indexInfo.html", function() {
+			console.log("loaded " + hash + " tab data");
+			$("#tab-home").tab("show");
+		});
+	} else {
+		$(hash).load(fragmentId + "Info.html", function() {
+			console.log("loaded " + hash + " tab data");
+			$("#tab-" + fragmentId).tab("show");
+		});
+	}
+}
+
+//// EVENT LISTENERS
+// when hashcode changes
+window.addEventListener("hashchange", navigate, false);
+
+// when a tab is clicked
+$('.nav-tabs a').click(function(e) {
+	e.preventDefault(); // this is uber important
+	location.hash = this.hash; // this triggers a hashchange event
 });
 
