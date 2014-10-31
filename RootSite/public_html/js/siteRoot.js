@@ -19,17 +19,10 @@ function navigate() {
 	var hash = location.hash;
 	fragmentId = location.hash.substr(1); // strip off # from hash
 	// fetch content and load to tab
-	if (fragmentId === "home" || !fragmentId) { // for home or no fragment
-		$(hash).load("indexInfo.html", function() {
-			console.log("loaded " + hash + " tab data");
-			$("#tab-home").tab("show");
-		});
-	} else {
-		$(hash).load(fragmentId + "Info.html", function() {
-			console.log("loaded " + hash + " tab data");
-			$("#tab-" + fragmentId).tab("show");
-		});
-	}
+	$(hash).load(fragmentId + "Info.html", function() {
+		console.log("loaded " + hash + " tab data");
+		$("#tab-" + fragmentId).tab("show");
+	});
 }
 
 //// EVENT LISTENERS
