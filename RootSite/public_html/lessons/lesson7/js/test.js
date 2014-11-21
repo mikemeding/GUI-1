@@ -9,19 +9,20 @@ var startVal1 = 0;
 var endVal1 = 0;
 var startVal2 = 0;
 var endVal2 = 0;
+var totalTabs = 0;
 
 
-$(document).ready(function() {
-	$("#myForm").load("form.html", function() { // load form modal HTML to the page
+$(document).ready(function () {
+	$("#myForm").load("form.html", function () { // load form modal HTML to the page
 		$("#myModal").modal('show'); // display modal from form.html once loaded
 
 		// LISTENERS
-		$("#multForm").submit(function() {		// when the submit button is clicked on the modal
+		$("#multForm").submit(function () {		// when the submit button is clicked on the modal
 			$("#myModal").modal('hide'); // attempt to hide which triggers hide event calling validation
 		});
 
 		// when any kind of hide action is preformed on the modal
-		$('#myModal').on('hidden.bs.modal', function(event) {
+		$('#myModal').on('hidden.bs.modal', function (event) {
 			if (validation()) { // preform number validation
 				$("#myModal").modal('hide'); // hide modal completely if validation succedes
 //				var tableHTML = renderTable();
@@ -48,17 +49,17 @@ $(document).ready(function() {
 	var nextTabNo = tabslist.find("li").length;
 
 	// this function is executed when an add-tab button is clicked
-	var AddTabButtonClickHandler = function() {
+	var AddTabButtonClickHandler = function () {
 		// console.log( "parent().parent() id = " + $(this).parent().parent().attr("id") ) ;
 		// console.log( $(this).parent().parent().find("ul li").length ) ;
 
-		// create a new tab
-		tabslist.append('<li><a href="#tab' + nextTabNo + '">' +
-				  'Tab ' + (nextTabNo + 1) + '<span id="span' + nextTabNo + '" class="remove-tab">&times;</span></a></li>');
-
 		// add content to the new tab
 		tabsdiv.append('<div id="' + String.fromCharCode(97 + nextTabNo) + '">' +
-				  renderTable() + '</div>');
+				renderTable() + '</div>');
+
+		// create a new tab
+		tabslist.append('<li><a href="#' + String.fromCharCode(97 + nextTabNo) + '">' +
+				'Tab ' + (nextTabNo + 1) + ' <span id="span' + nextTabNo + '" class="remove-tab" aria-hidden="true">&times;</span></a></li>'); // do not remove span id
 
 		// add Add Tab and Remove Tab buttons to the new tab
 		// $("#" + String.fromCharCode( 97+ntabs ) ).append( 
@@ -76,31 +77,35 @@ $(document).ready(function() {
 //		$("#" + String.fromCharCode(97 + nextTabNo) + " .add-tab").click(AddTabButtonClickHandler);
 		$("#span" + nextTabNo).click(RemoveTabButtonClickHandler);
 
-		tabsdiv.tabs('option', 'active', nextTabNo); // set this tab to be focused
+		tabsdiv.tabs('option', 'active', totalTabs); // set this tab to be focused
 		// increment number of next tab to add
 		nextTabNo++;
+		totalTabs++;
 	};
 
 // this function is executed when an add-tab button is clicked
-	var RemoveTabButtonClickHandler = function() {
-		console.log("this: ");
-		console.log($(this));
+	var RemoveTabButtonClickHandler = function () {
+//		console.log("this: ");
+//		console.log($(this));
 
-//// the list of tabs
-//		var tabslist = $("#tab-row");
-//
-//		// remove tab content
-//		$(id).remove();
-//
+		// remove tab 
+//		console.log($(this).parent().context.getAttribute("id").slice(4));
+		var id = Number($(this).parent().context.getAttribute("id").slice(4));
+
+//		$(this).remove();
+		$(this).parent().parent().remove();
+
 //		// remove tab itself        
-////		var id = $(this).parent().attr("id");
+//		var id = $(this).attr("id");
 //		// console.log( "need to remove tab with href = #" + id ) ;
-//		var tabToRemove = tabslist.find("li a[href='#" + id + "']");
+		var tabToRemove = String.fromCharCode(97 + id);
 //		// console.log( "tabToRemove = " + tabToRemove.html() ) ;
-//		tabToRemove.remove();
-//
-//		// refresh the tab structure to make the newly added components appear
-//		$("#myTabs").tabs("refresh");
+		$("#" + tabToRemove).remove();
+
+		// refresh the tab structure to make the newly added components appear
+		$("#myTabs").tabs("refresh");
+		totalTabs--; // this tab has now been removed 
+		tabsdiv.tabs('option', 'active', totalTabs - 1); // set this tab to be focused (next tab down)
 	};
 
 
@@ -112,7 +117,7 @@ $(document).ready(function() {
 
 });
 
-var validation = function(event) {
+var validation = function (event) {
 	// preform validation here
 	resetForm(); // reset all errors fields and close error messages
 
@@ -174,7 +179,7 @@ var validation = function(event) {
 
 };
 // resets all error conditions and closes error messages
-var resetForm = function() {
+var resetForm = function () {
 	$("#multForm-error").addClass("hidden"); // hide alert message
 	$("#startVal1Group").removeClass("has-error");
 	$("#endVal1Group").removeClass("has-error");
@@ -183,7 +188,7 @@ var resetForm = function() {
 };
 
 // create and append multiplication table
-var renderTable = function() {
+var renderTable = function () {
 	var tableString = "";
 	var tableHead = "";
 	var tableBody = "";
