@@ -4,22 +4,19 @@
 //Created on: 09/09/2014
 //Course Info: 91.461 GUI programming 1 Jesse M. Heines 
 //
-// This is the javascript to support the lesson6 page
-
 // global start and end values
 var startVal1 = 0;
 var endVal1 = 0;
 var startVal2 = 0;
 var endVal2 = 0;
 
-// load form to page when DOM is ready
+
 $(document).ready(function() {
-	$("#myForm").load("form.html", function() { // load form HTML to the page
+	$("#myForm").load("form.html", function() { // load form modal HTML to the page
 		$("#myModal").modal('show'); // display modal from form.html once loaded
 
 		// LISTENERS
-		// when the actual submit button is clicked
-		$("#multForm").submit(function() {
+		$("#multForm").submit(function() {		// when the submit button is clicked on the modal
 			$("#myModal").modal('hide'); // attempt to hide which triggers hide event calling validation
 		});
 
@@ -35,89 +32,83 @@ $(document).ready(function() {
 				$("#myModal").modal('show'); // rerender modal with errors
 			}
 		});
-
 	});
 
+	$("#myTabs").tabs();
+	// console.log( "parent id = " + $("#a").parent().attr( "id" ) ) ;
 
-
-
-$("#myTabs").tabs();
-// console.log( "parent id = " + $("#a").parent().attr( "id" ) ) ;
-
-// the div containing the complete tabs structure
-// var tabsdiv = $(this).parent().parent() ; 
-var tabsdiv = $("#myTabs");
+	// the div containing the complete tabs structure
+	// var tabsdiv = $(this).parent().parent() ; 
+	var tabsdiv = $("#myTabs");
 
 // the list of tabs
-var tabslist = $("#tab-row");
+	var tabslist = $("#tab-row");
 
-// set the number of the next tab to add
-var nextTabNo = tabslist.find("li").length;
+	// set the number of the next tab to add
+	var nextTabNo = tabslist.find("li").length;
 
-// this function is executed when an add-tab button is clicked
-var AddTabButtonClickHandler = function() {
-	// console.log( "parent().parent() id = " + $(this).parent().parent().attr("id") ) ;
-	// console.log( $(this).parent().parent().find("ul li").length ) ;
+	// this function is executed when an add-tab button is clicked
+	var AddTabButtonClickHandler = function() {
+		// console.log( "parent().parent() id = " + $(this).parent().parent().attr("id") ) ;
+		// console.log( $(this).parent().parent().find("ul li").length ) ;
 
-	// the number of tabs - made obsolete by nextTabNo
-	// var ntabs = tabslist.find("li").length ;
-	// console.log( "ntabs = " + ntabs ) ;
+		// create a new tab
+		tabslist.append('<li><a href="#tab' + nextTabNo + '">' +
+				  'Tab ' + (nextTabNo + 1) + '<span id="span' + nextTabNo + '" class="remove-tab">&times;</span></a></li>');
 
-	// create a new tab
-	tabslist.append('<li><a href="#' + String.fromCharCode(97 + nextTabNo) + '">' +
-			  'Tab ' + (nextTabNo + 1) + '</a></li>');
+		// add content to the new tab
+		tabsdiv.append('<div id="' + String.fromCharCode(97 + nextTabNo) + '">' +
+				  renderTable() + '</div>');
 
-	// add content to the new tab
-	tabsdiv.append('<div id="' + String.fromCharCode(97 + nextTabNo) + '">' +
-			  renderTable() + '</div>');
+		// add Add Tab and Remove Tab buttons to the new tab
+		// $("#" + String.fromCharCode( 97+ntabs ) ).append( 
+//		$("#" + String.fromCharCode(97 + nextTabNo)).append(
+//				  '<button class="add-tab">Add Tab</button> ' +
+//				  '<button class="remove-tab">Remove Tab</button>');
 
-	// add Add Tab and Remove Tab buttons to the new tab
-	// $("#" + String.fromCharCode( 97+ntabs ) ).append( 
-	$("#" + String.fromCharCode(97 + nextTabNo)).append(
-			  '<button class="add-tab">Add Tab</button> ' +
-			  '<button class="remove-tab">Remove Tab</button>');
+		// refresh the tab structure to make the newly added components appear
+		$("#myTabs").tabs("refresh");
 
-	// refresh the tab structure to make the newly added components appear
-	$("#myTabs").tabs("refresh");
+		// add click handler to all buttons with class add-tab
+		// note that this statement must be executed AFTER the tabs structure is refreshed
+		// $("#" + String.fromCharCode( 97+ntabs ) + " .add-tab").click( AddTabButtonClickHandler ) ;
+		// $("#" + String.fromCharCode( 97+ntabs ) + " .remove-tab").click( RemoveTabButtonClickHandler ) ;
+//		$("#" + String.fromCharCode(97 + nextTabNo) + " .add-tab").click(AddTabButtonClickHandler);
+		$("#span" + nextTabNo).click(RemoveTabButtonClickHandler);
 
-	// add click handler to all buttons with class add-tab
-	// note that this statement must be executed AFTER the tabs structure is refreshed
-	// $("#" + String.fromCharCode( 97+ntabs ) + " .add-tab").click( AddTabButtonClickHandler ) ;
-	// $("#" + String.fromCharCode( 97+ntabs ) + " .remove-tab").click( RemoveTabButtonClickHandler ) ;
-	$("#" + String.fromCharCode(97 + nextTabNo) + " .add-tab").click(AddTabButtonClickHandler);
-	$("#" + String.fromCharCode(97 + nextTabNo) + " .remove-tab").click(RemoveTabButtonClickHandler);
-
-	// increment number of next tab to add
-	nextTabNo++;
-};
+		tabsdiv.tabs('option', 'active', nextTabNo); // set this tab to be focused
+		// increment number of next tab to add
+		nextTabNo++;
+	};
 
 // this function is executed when an add-tab button is clicked
-var RemoveTabButtonClickHandler = function() {
-	// console.log( $(this).parent().attr("id") ) ;
+	var RemoveTabButtonClickHandler = function() {
+		console.log("this: ");
+		console.log($(this));
 
-	// remove tab content
-	$(this).parent().remove();
-
-	// remove tab itself        
-	var id = $(this).parent().attr("id");
-	// console.log( "need to remove tab with href = #" + id ) ;
-	var tabToRemove = tabslist.find("li a[href='#" + id + "']").parent();
-	// console.log( "tabToRemove = " + tabToRemove.html() ) ;
-	tabToRemove.remove();
-
-	// refresh the tab structure to make the newly added components appear
-	$("#myTabs").tabs("refresh");
-};
-
-// add the Add Tab button click handler to all All Tab buttons
-$(".add-tab").click(AddTabButtonClickHandler);
-
-// add the Add Tab button click handler to all All Tab buttons
-$(".remove-tab").click(RemoveTabButtonClickHandler);
+//// the list of tabs
+//		var tabslist = $("#tab-row");
+//
+//		// remove tab content
+//		$(id).remove();
+//
+//		// remove tab itself        
+////		var id = $(this).parent().attr("id");
+//		// console.log( "need to remove tab with href = #" + id ) ;
+//		var tabToRemove = tabslist.find("li a[href='#" + id + "']");
+//		// console.log( "tabToRemove = " + tabToRemove.html() ) ;
+//		tabToRemove.remove();
+//
+//		// refresh the tab structure to make the newly added components appear
+//		$("#myTabs").tabs("refresh");
+	};
 
 
-
-
+//	// add the Add Tab button click handler to all All Tab buttons
+//	$(".add-tab").click(AddTabButtonClickHandler);
+//
+//	// add the Add Tab button click handler to all All Tab buttons
+	$(".remove-tab").click(RemoveTabButtonClickHandler);
 
 });
 
@@ -191,9 +182,6 @@ var resetForm = function() {
 	$("#endVal2Group").removeClass("has-error");
 };
 
-
-
-
 // create and append multiplication table
 var renderTable = function() {
 	var tableString = "";
@@ -234,22 +222,4 @@ var renderTable = function() {
 	return tableString;
 //	$("#myTable").html(tableString);
 };
-
-
-//var addTab = function(tableHTML) {
-//	var tabNumber = $('#tabs li').size() + 1;
-//
-//	// create the tab
-//	$('<li><a href="#tab' + tabNumber + '" data-toggle="tab">Tab ' + tabNumber + '</a>'+
-//'<button type=button onclick="removeTab('+"'"+'tab'+tabNumber+"'"+')"><span aria-hidden="true">&times;</span></button></li>').appendTo('#tabs');
-//
-//	// create the tab content
-//	$('<div class="tab-pane" id="tab' + tabNumber + '">' + tableHTML + '</div>').appendTo('.tab-content');
-//
-//	// make the new tab active
-//	$('#tabs a:last').tab('show');
-//
-//};
-
-
 

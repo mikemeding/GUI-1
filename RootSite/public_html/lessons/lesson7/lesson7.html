@@ -14,20 +14,26 @@ This page takes user data from a form using a modal then creates and formats a t
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+		<!--CSS INCLUDES-->
 		<!--fonts (used the standard google fonts implementation)-->
 		<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
-
-		<!--jQuery UI-->
-		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
-
 		<!-- Bootstrap core CSS -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
-
+		<!--jQuery UI-->
+		<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
 		<!--bring in my css for this lesson-->
 		<link rel="stylesheet" type="text/css" href="css/lesson7.css"> 
 
-
-
+		<!--JAVASCRIPT INCLUDES-->
+		<!--jQuery-->		
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!--bootstrap javascript!-->
+		<script src="js/bootstrap.min.js"></script>
+		<!--jQuery UI-->
+		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+		<!--my javascript-->
+		<!--<script src="js/lesson7.js"></script>-->
+		<script src="js/test.js"></script>
 	</head>
 	<body>
 		<div class="container">
@@ -41,16 +47,15 @@ This page takes user data from a form using a modal then creates and formats a t
 			<!--my generated table-->
 			<div class="row">
 				<div class="col-lg-12">
-					<!--where tabs are displayed-->
-					<ul class="nav nav-tabs">
-					</ul>
-
-					<!--actual tab content-->
-					<div class="tab-content" id="tabs">
+					<div id="myTabs">
+						<ul id="tab-row">
+						</ul>
 					</div>
-
-
 				</div>	
+				<!-- Button trigger modal -->
+				<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+					Add Tab
+				</button>
 			</div>
 
 			<div id="myForm"></div>
@@ -62,24 +67,6 @@ This page takes user data from a form using a modal then creates and formats a t
 		</div>
 
 
-		<!--JAVASCRIPT INCLUDES-->
-		<!--
-	 load jQuery library from the Google Content Delivery Network (CDN)
-	 see http://encosia.com/3-reasons-why-you-should-let-google-host-jquery-for-you/
-	 however, note that you obviously must be online for this to work
-	 alternatively, you can download jQuery and store it locally from
-		http://jquery.com/download/
-		-->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		
-		<!--jQuery UI-->
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-
-		<!--bootstrap javascript!-->
-		<script src="js/bootstrap.min.js"></script>
-
-		<!--my javascript-->
-		<script src="js/lesson7.js"></script>
 
 	</body>
 </html>
