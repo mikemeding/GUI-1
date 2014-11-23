@@ -4,124 +4,188 @@
 //Created on: 09/09/2014
 //Course Info: 91.461 GUI programming 1 Jesse M. Heines 
 //
-// This is the javascript to support the lesson6 page
-
 // global start and end values
 var startVal1 = 0;
 var endVal1 = 0;
 var startVal2 = 0;
 var endVal2 = 0;
+var totalTabs = 0;
 
-// load form to page when DOM is ready
-$(document).ready(function() {
-	$("#myForm").load("form.html", function() { // load form HTML to the page
+
+$(document).ready(function () {
+	$("#myForm").load("form.html", function () { // load form modal HTML to the page
 		$("#myModal").modal('show'); // display modal from form.html once loaded
 
 		// LISTENERS
-		// when the actual submit button is clicked
-		$("#multForm").submit(function() {
+		$("#multForm").submit(function () {		// when the submit button is clicked on the modal
 			$("#myModal").modal('hide'); // attempt to hide which triggers hide event calling validation
 		});
 
 		// when any kind of hide action is preformed on the modal
-		$('#myModal').on('hidden.bs.modal', function(event) {
-			if (validation()) { // preform number validation
-				$("#myModal").modal('hide'); // hide modal completely if validation succedes
-//				var tableHTML = renderTable();
-//				addTab(tableHTML);
-				AddTabButtonClickHandler();
+//		$('#myModal').on('hidden.bs.modal', function (event) {
+//			if (validation()) { // preform number validation
+//				$("#myModal").modal('hide'); // hide modal completely if validation succedes
+////				var tableHTML = renderTable();
+////				addTab(tableHTML);
+//				AddTabButtonClickHandler();
+//
+//			} else {
+//				$("#myModal").modal('show'); // rerender modal with errors
+//			}
+//		});
 
-			} else {
-				$("#myModal").modal('show'); // rerender modal with errors
+		$('#myForm').bootstrapValidator({
+			message: 'This value is not valid',
+			feedbackIcons: {
+				valid: 'glyphicon glyphicon-ok',
+				invalid: 'glyphicon glyphicon-remove',
+				validating: 'glyphicon glyphicon-refresh'
+			},
+			fields: {
+				start1: {
+					message: 'This number is invalid',
+					validators: {
+						notEmpty: {
+							message: 'This start value is required and cannot be empty'
+						},
+						integer: {
+							message: 'This value is not an integer'
+						}
+					}
+				},
+				start2: {
+					message: 'This number is invalid',
+					validators: {
+						notEmpty: {
+							message: 'This start value is required and cannot be empty'
+						},
+						integer: {
+							message: 'This value is not an integer'
+						}
+					}
+				},
+				end1: {
+					message: 'This number is invalid',
+					validators: {
+						notEmpty: {
+							message: 'This end value is required and cannot be empty'
+						},
+						integer: {
+							message: 'This value is not an integer'
+						}
+					}
+				},
+				end2: {
+					message: 'This number is invalid',
+					validators: {
+						notEmpty: {
+							message: 'This end value is required and cannot be empty'
+						},
+						integer: {
+							message: 'This value is not an integer'
+						}
+					}
+				}
 			}
-		});
+		})
+				  .on('success.field.bv', function (e, data) {
+					  if (data.bv.isValid()) {
+						  console.log("success");
+						  data.bv.disableSubmitButtons(false);
+					  }
+					  // e, data parameters are the same as in error.field.bv event handler
+					  // Despite that the field is valid, by default, the submit button will be disabled if all the following conditions meet
+					  // - The submit button is clicked
+					  // - The form is invalid
+					  data.bv.disableSubmitButtons(false);
+				  });
+
 
 	});
 
+	$("#myTabs").tabs();
+	// console.log( "parent id = " + $("#a").parent().attr( "id" ) ) ;
 
-
-
-$("#myTabs").tabs();
-// console.log( "parent id = " + $("#a").parent().attr( "id" ) ) ;
-
-// the div containing the complete tabs structure
-// var tabsdiv = $(this).parent().parent() ; 
-var tabsdiv = $("#myTabs");
+	// the div containing the complete tabs structure
+	// var tabsdiv = $(this).parent().parent() ; 
+	var tabsdiv = $("#myTabs");
 
 // the list of tabs
-var tabslist = $("#tab-row");
+	var tabslist = $("#tab-row");
 
-// set the number of the next tab to add
-var nextTabNo = tabslist.find("li").length;
+	// set the number of the next tab to add
+	var nextTabNo = tabslist.find("li").length;
 
-// this function is executed when an add-tab button is clicked
-var AddTabButtonClickHandler = function() {
-	// console.log( "parent().parent() id = " + $(this).parent().parent().attr("id") ) ;
-	// console.log( $(this).parent().parent().find("ul li").length ) ;
+	// this function is executed when an add-tab button is clicked
+	var AddTabButtonClickHandler = function () {
+		// console.log( "parent().parent() id = " + $(this).parent().parent().attr("id") ) ;
+		// console.log( $(this).parent().parent().find("ul li").length ) ;
 
-	// the number of tabs - made obsolete by nextTabNo
-	// var ntabs = tabslist.find("li").length ;
-	// console.log( "ntabs = " + ntabs ) ;
+		// add content to the new tab
+		tabsdiv.append('<div id="' + String.fromCharCode(97 + nextTabNo) + '">' +
+				  renderTable() + '</div>');
 
-	// create a new tab
-	tabslist.append('<li><a href="#' + String.fromCharCode(97 + nextTabNo) + '">' +
-			  'Tab ' + (nextTabNo + 1) + '</a></li>');
+		// create a new tab
+		tabslist.append('<li><a href="#' + String.fromCharCode(97 + nextTabNo) + '">' +
+				  'Tab ' + (nextTabNo + 1) + ' <span id="span' + nextTabNo + '" class="remove-tab" aria-hidden="true">&times;</span></a></li>'); // do not remove span id
 
-	// add content to the new tab
-	tabsdiv.append('<div id="' + String.fromCharCode(97 + nextTabNo) + '">' +
-			  renderTable() + '</div>');
+		// add Add Tab and Remove Tab buttons to the new tab
+		// $("#" + String.fromCharCode( 97+ntabs ) ).append( 
+//		$("#" + String.fromCharCode(97 + nextTabNo)).append(
+//				  '<button class="add-tab">Add Tab</button> ' +
+//				  '<button class="remove-tab">Remove Tab</button>');
 
-	// add Add Tab and Remove Tab buttons to the new tab
-	// $("#" + String.fromCharCode( 97+ntabs ) ).append( 
-	$("#" + String.fromCharCode(97 + nextTabNo)).append(
-			  '<button class="add-tab">Add Tab</button> ' +
-			  '<button class="remove-tab">Remove Tab</button>');
+		// refresh the tab structure to make the newly added components appear
+		$("#myTabs").tabs("refresh");
 
-	// refresh the tab structure to make the newly added components appear
-	$("#myTabs").tabs("refresh");
+		// add click handler to all buttons with class add-tab
+		// note that this statement must be executed AFTER the tabs structure is refreshed
+		// $("#" + String.fromCharCode( 97+ntabs ) + " .add-tab").click( AddTabButtonClickHandler ) ;
+		// $("#" + String.fromCharCode( 97+ntabs ) + " .remove-tab").click( RemoveTabButtonClickHandler ) ;
+//		$("#" + String.fromCharCode(97 + nextTabNo) + " .add-tab").click(AddTabButtonClickHandler);
+		$("#span" + nextTabNo).click(RemoveTabButtonClickHandler);
 
-	// add click handler to all buttons with class add-tab
-	// note that this statement must be executed AFTER the tabs structure is refreshed
-	// $("#" + String.fromCharCode( 97+ntabs ) + " .add-tab").click( AddTabButtonClickHandler ) ;
-	// $("#" + String.fromCharCode( 97+ntabs ) + " .remove-tab").click( RemoveTabButtonClickHandler ) ;
-	$("#" + String.fromCharCode(97 + nextTabNo) + " .add-tab").click(AddTabButtonClickHandler);
-	$("#" + String.fromCharCode(97 + nextTabNo) + " .remove-tab").click(RemoveTabButtonClickHandler);
-
-	// increment number of next tab to add
-	nextTabNo++;
-};
+		tabsdiv.tabs('option', 'active', totalTabs); // set this tab to be focused
+		// increment number of next tab to add
+		nextTabNo++;
+		totalTabs++;
+	};
 
 // this function is executed when an add-tab button is clicked
-var RemoveTabButtonClickHandler = function() {
-	// console.log( $(this).parent().attr("id") ) ;
+	var RemoveTabButtonClickHandler = function () {
+//		console.log("this: ");
+//		console.log($(this));
 
-	// remove tab content
-	$(this).parent().remove();
+		// remove tab 
+//		console.log($(this).parent().context.getAttribute("id").slice(4));
+		var id = Number($(this).parent().context.getAttribute("id").slice(4));
 
-	// remove tab itself        
-	var id = $(this).parent().attr("id");
-	// console.log( "need to remove tab with href = #" + id ) ;
-	var tabToRemove = tabslist.find("li a[href='#" + id + "']").parent();
-	// console.log( "tabToRemove = " + tabToRemove.html() ) ;
-	tabToRemove.remove();
+//		$(this).remove();
+		$(this).parent().parent().remove();
 
-	// refresh the tab structure to make the newly added components appear
-	$("#myTabs").tabs("refresh");
-};
+//		// remove tab itself        
+//		var id = $(this).attr("id");
+//		// console.log( "need to remove tab with href = #" + id ) ;
+		var tabToRemove = String.fromCharCode(97 + id);
+//		// console.log( "tabToRemove = " + tabToRemove.html() ) ;
+		$("#" + tabToRemove).remove();
 
-// add the Add Tab button click handler to all All Tab buttons
-$(".add-tab").click(AddTabButtonClickHandler);
-
-// add the Add Tab button click handler to all All Tab buttons
-$(".remove-tab").click(RemoveTabButtonClickHandler);
-
-
+		// refresh the tab structure to make the newly added components appear
+		$("#myTabs").tabs("refresh");
+		totalTabs--; // this tab has now been removed 
+		tabsdiv.tabs('option', 'active', totalTabs - 1); // set this tab to be focused (next tab down)
+	};
 
 
+//	// add the Add Tab button click handler to all All Tab buttons
+//	$(".add-tab").click(AddTabButtonClickHandler);
+//
+//	// add the Add Tab button click handler to all All Tab buttons
+	$(".remove-tab").click(RemoveTabButtonClickHandler);
 
 });
 
-var validation = function(event) {
+var validation = function (event) {
 	// preform validation here
 	resetForm(); // reset all errors fields and close error messages
 
@@ -183,7 +247,7 @@ var validation = function(event) {
 
 };
 // resets all error conditions and closes error messages
-var resetForm = function() {
+var resetForm = function () {
 	$("#multForm-error").addClass("hidden"); // hide alert message
 	$("#startVal1Group").removeClass("has-error");
 	$("#endVal1Group").removeClass("has-error");
@@ -191,11 +255,8 @@ var resetForm = function() {
 	$("#endVal2Group").removeClass("has-error");
 };
 
-
-
-
 // create and append multiplication table
-var renderTable = function() {
+var renderTable = function () {
 	var tableString = "";
 	var tableHead = "";
 	var tableBody = "";
@@ -234,22 +295,4 @@ var renderTable = function() {
 	return tableString;
 //	$("#myTable").html(tableString);
 };
-
-
-//var addTab = function(tableHTML) {
-//	var tabNumber = $('#tabs li').size() + 1;
-//
-//	// create the tab
-//	$('<li><a href="#tab' + tabNumber + '" data-toggle="tab">Tab ' + tabNumber + '</a>'+
-//'<button type=button onclick="removeTab('+"'"+'tab'+tabNumber+"'"+')"><span aria-hidden="true">&times;</span></button></li>').appendTo('#tabs');
-//
-//	// create the tab content
-//	$('<div class="tab-pane" id="tab' + tabNumber + '">' + tableHTML + '</div>').appendTo('.tab-content');
-//
-//	// make the new tab active
-//	$('#tabs a:last').tab('show');
-//
-//};
-
-
 
