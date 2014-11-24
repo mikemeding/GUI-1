@@ -12,12 +12,12 @@ var endVal2 = 0;
 var totalTabs = 0;
 
 
-$(document).ready(function () {
-	$("#myForm").load("form.html", function () { // load form modal HTML to the page
+$(document).ready(function() {
+	$("#myForm").load("form.html", function() { // load form modal HTML to the page
 		$("#myModal").modal('show'); // display modal from form.html once loaded
 
 		// LISTENERS
-		$("#multForm").submit(function () {		// when the submit button is clicked on the modal
+		$("#multForm").submit(function() {		// when the submit button is clicked on the modal
 			$("#myModal").modal('hide'); // attempt to hide which triggers hide event calling validation
 		});
 
@@ -33,7 +33,8 @@ $(document).ready(function () {
 //				$("#myModal").modal('show'); // rerender modal with errors
 //			}
 //		});
-
+		var minRange = -20;
+		var maxRange = 20;
 		$('#myForm').bootstrapValidator({
 			message: 'This value is not valid',
 			feedbackIcons: {
@@ -45,6 +46,11 @@ $(document).ready(function () {
 				start1: {
 					message: 'This number is invalid',
 					validators: {
+						between: {
+							min: minRange,
+							max: maxRange,
+							message: 'Value must be between ' + minRange + ' and ' + maxRange
+						},
 						notEmpty: {
 							message: 'This start value is required and cannot be empty'
 						},
@@ -56,6 +62,11 @@ $(document).ready(function () {
 				start2: {
 					message: 'This number is invalid',
 					validators: {
+						between: {
+							min: minRange,
+							max: maxRange,
+							message: 'Value must be between ' + minRange + ' and ' + maxRange
+						},
 						notEmpty: {
 							message: 'This start value is required and cannot be empty'
 						},
@@ -67,6 +78,11 @@ $(document).ready(function () {
 				end1: {
 					message: 'This number is invalid',
 					validators: {
+						between: {
+							min: minRange,
+							max: maxRange,
+							message: 'Value must be between ' + minRange + ' and ' + maxRange
+						},
 						notEmpty: {
 							message: 'This end value is required and cannot be empty'
 						},
@@ -78,6 +94,11 @@ $(document).ready(function () {
 				end2: {
 					message: 'This number is invalid',
 					validators: {
+						between: {
+							min: minRange,
+							max: maxRange,
+							message: 'Value must be between ' + minRange + ' and ' + maxRange
+						},
 						notEmpty: {
 							message: 'This end value is required and cannot be empty'
 						},
@@ -88,16 +109,15 @@ $(document).ready(function () {
 				}
 			}
 		})
-				  .on('success.field.bv', function (e, data) {
+				  .on('success.', function(e, data) {
 					  if (data.bv.isValid()) {
-						  console.log("success");
+						  console.log("all fields valid");
 						  data.bv.disableSubmitButtons(false);
 					  }
 					  // e, data parameters are the same as in error.field.bv event handler
 					  // Despite that the field is valid, by default, the submit button will be disabled if all the following conditions meet
 					  // - The submit button is clicked
 					  // - The form is invalid
-					  data.bv.disableSubmitButtons(false);
 				  });
 
 
@@ -117,7 +137,7 @@ $(document).ready(function () {
 	var nextTabNo = tabslist.find("li").length;
 
 	// this function is executed when an add-tab button is clicked
-	var AddTabButtonClickHandler = function () {
+	var AddTabButtonClickHandler = function() {
 		// console.log( "parent().parent() id = " + $(this).parent().parent().attr("id") ) ;
 		// console.log( $(this).parent().parent().find("ul li").length ) ;
 
@@ -152,7 +172,7 @@ $(document).ready(function () {
 	};
 
 // this function is executed when an add-tab button is clicked
-	var RemoveTabButtonClickHandler = function () {
+	var RemoveTabButtonClickHandler = function() {
 //		console.log("this: ");
 //		console.log($(this));
 
@@ -185,7 +205,7 @@ $(document).ready(function () {
 
 });
 
-var validation = function (event) {
+var validation = function(event) {
 	// preform validation here
 	resetForm(); // reset all errors fields and close error messages
 
@@ -247,7 +267,7 @@ var validation = function (event) {
 
 };
 // resets all error conditions and closes error messages
-var resetForm = function () {
+var resetForm = function() {
 	$("#multForm-error").addClass("hidden"); // hide alert message
 	$("#startVal1Group").removeClass("has-error");
 	$("#endVal1Group").removeClass("has-error");
@@ -256,7 +276,7 @@ var resetForm = function () {
 };
 
 // create and append multiplication table
-var renderTable = function () {
+var renderTable = function() {
 	var tableString = "";
 	var tableHead = "";
 	var tableBody = "";
