@@ -35,3 +35,5 @@ $('.nav-tabs a').click(function(e) {
 	location.hash = this.hash; // this triggers a hashchange event
 });
 
+$('[data-toggle="tooltip"]').tooltip({'placement': 'right'});
+
