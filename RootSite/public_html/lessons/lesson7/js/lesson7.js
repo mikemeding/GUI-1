@@ -126,16 +126,16 @@ $(document).ready(function () {
 			.on('success.field.bv', function (e, data) { // updates the global values dynamically
 				var value = $("input[name='" + data.field + "']").val();
 				if (data.field === "start1") {
-					startVal1 = value;
+					startVal1 = parseInt(value);
 				}
 				if (data.field === "start2") {
-					startVal2 = value;
+					startVal2 = parseInt(value);
 				}
 				if (data.field === "end1") {
-					endVal1 = value;
+					endVal1 = parseInt(value);
 				}
 				if (data.field === "end2") {
-					endVal2 = value;
+					endVal2 = parseInt(value);
 				}
 				data.bv.disableSubmitButtons(false);
 			});
