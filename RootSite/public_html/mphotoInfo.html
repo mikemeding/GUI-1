@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- 
+Michael Meding
+mikeymeding@gmail.com (this is my prefered email)
+Student studying Computer Science at the University of Massachusetts Lowell
+Created on: 09/09/2014
+Course Info: 91.461 GUI programming 1 Jesse M. Heines 
+
+This page is my first dynamically loaded image page using JSON and javascript.
+Instead of loading just simple text I decided to have a JSON file with my photo metadata and have them be dynamically loaded to the page.
+-->
+
+<!--mphoto css-->
+<link href="css/mphoto.css" rel="stylesheet">
+
+<!--new banner-->
+<div class="row">
+	<img id="banner" class="img-responsive" src="img/Mphoto.png" alt="Mphoto Logo">
+</div>	
+
+<!--horizontal bar-->
+<hr /> 
+
+<!--this stuff gets loaded prior to all images-->
+<!--<div id="loading">
+	loading images gif
+	<p>Loading images...</p>
+	<img src="img/loadingimages.gif" alt="scrolling load gif">
+</div>-->
+
+<div id="display-area" class="hidden">
+	<!--content area underneath banner-->	
+	<div class="row">
+		<div class="col-lg-10 col-md-10 col-sm-10">
+			<!--this is the full content of the page loaded from javascript-->
+			<div id="content"></div>
+		</div>
+
+		<div class="col-lg-2 col-md-2 col-sm-2">
+			<!--side navigator bar-->
+			<div id="navigator"></div>
+		</div>
+	</div>
+</div>
+
+<!--bring in my javascript-->
+<!--<script src="js/lesson5.js"></script>-->
+<script src="js/imgur.js"></script>
+

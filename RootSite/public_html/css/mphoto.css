@@ -1,0 +1,44 @@
+/*
+Michael Meding
+mikeymeding@gmail.com (this is my prefered email)
+Student studying Computer Science at the University of Massachusetts Lowell
+Created on: 09/09/2014
+Course Info: 91.461 GUI programming 1 Jesse M. Heines 
+
+This page is designed to show a simple page that includes some 
+handwritten css with good selectors.
+*/
+
+/* adds the little glider after my name in the footer*/
+#hacker-glider {
+	margin-top: 5px;
+	width: 25px;
+	height: auto;
+	padding: 2px;
+}
+
+/* all images get hover dropshadow effect*/
+img:hover {
+	box-shadow: 5px 5px 3px #888888;	
+}
+
+/*center top logo and remove dropshadow effect*/
+#banner.img-responsive {
+	margin: 0 auto;
+	box-shadow: 0px 0px 0px #fffffe; 
+}
+
+/*top horizontal bar*/
+hr { width:80%; 
+	  border: 0;
+	  height: 1px;
+	  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+	  background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+	  background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+	  background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0)); 
+}
+
+
+body {
+	/*padding-top: 20px;*/
+}
