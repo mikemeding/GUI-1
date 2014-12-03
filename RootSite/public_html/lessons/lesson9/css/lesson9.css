@@ -1,0 +1,12 @@
+/* 
+    Created on : Dec 2, 2014, 10:11:08 PM
+    Author     : mike
+*/
+
+/*for some reason bootstrap defaults to using the I beam....*/
+th {cursor: pointer;}
+
+th:hover {
+	/*light blue*/
+	color: #0066ff;
+}

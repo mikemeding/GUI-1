@@ -1,0 +1,135 @@
+<html ng-app="SubmissionsApp">
+	<head>
+		<meta charset="utf-8">
+		<!--
+		  File:  D:\H-Drive\91-461\461-2014-15f\assn09\MySolution\jmh-assn09-v4.html
+		  Jesse M. Heines, UMass Lowell Computer Science, heines@cs.uml.edu
+		  Copyright (c) 2014 by Jesse M. Heines.  All rights reserved.  May be freely 
+		   copied or excerpted for educational purposes with credit to the author.
+		  updated by JMH on November 29, 2014 at 3:29 PM
+		  
+		  Note the need to name the SubmissionsApp in the html ng-app attribute above
+		  if we're going to use it in the angular.module function below.
+		
+		THIS CODE IS A BRANCH FROM Jesse M. Heines STARTER CODE
+		-->
+		<title>Assignment Submissions</title>
+
+		<!-- CDN hosted AngularJS -->
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.js"></script>
+
+		<!--CDN bootstrap-->
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+		<!-- CSS for this app -->
+		<link type="text/css" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/lesson9.css">
+
+
+		<!-- my own collection of utility functions -->
+		<script src="js/utilities.js"></script>
+
+		<!--where all the fancy angular stuff goes-->
+		<script src="js/loadTable.js"></script>
+
+		<!-- filter functions for this app -->
+		<script src="js/filters.js"></script>
+
+	</head>
+
+	<body>
+		<!-- the main view, controlled by AngularJS -->
+		<div class="container" ng-controller="SubmissionsCtrl">
+			<div class="row">
+				<div class="jumbotron">
+					<!-- page head and version information -->
+					<h1 class="text-center" id="maintitle">91.461 Assignment No. {{assnNo}} Submissions</h1>
+					
+					<!-- 
+			  show number of records in the JSON data
+			   http://stackoverflow.com/questions/19956074/how-can-i-show-a-count-of-rows-from-an-ng-repeat
+			  show date and time
+			   http://stackoverflow.com/questions/22962468/angularjs-display-current-date
+			   https://docs.angularjs.org/api/ng/filter/date 
+					-->
+					<h2>Try clicking the bold words to organize the table. <small>
+						(There are {{(jsonData.data.RECORDS).length}} total submissions.) 
+						<!--{{(jsonData.data.RECORDS).length}} submissions received as of--> 
+						<!--{{dataFileCreationDate| date:"MMMM d, yyyy"}} at {{dataFileCreationDate| date:"h:mm a"}}.-->
+						</small>
+					</h2>
+				</div>
+
+
+
+				<!-- the table controlled by the AngularJS controller -->
+				<table class="table table-striped" id="tblSubmissions">
+					<!-- the column heads -->
+					<thead>
+						<tr>
+							<th>#</th>
+							<th ng-click="sortColumn(2)">Student Name</th>
+							<th ng-click="sortColumn(3)">Grading File</th>
+							<th ng-click="sortColumn(4)">Submit Date &amp; Time</th>
+							<th>Submit Link</th>
+							<th>Student Comments</th>
+						</tr>
+					</thead>
+					<!-- 
+					  AngularJS template for each row of the table 
+					  the ng-model attribute causes the data to be re-rendered when the jsonData changes
+					-->
+					<tbody ng-model="jsonData">
+						<tr ng-repeat="oneSubmit in jsonData.data.RECORDS| orderBy : sortField : sortDescending">
+
+							<!-- the built-in AngularJS loop index -->
+							<td>{{$index| increment}}</td>
+
+							<!-- the student's first and last names only, in LastName, FirstName format -->
+							<td>{{oneSubmit.student_name| firstLastOnly}}</td>
+
+							<!-- 
+							  The student's grading file name is the part of his or her up to the @ sign
+							  followed by ".txt".
+							-->
+							<td>{{oneSubmit.student_address| upToAtSign}}.txt</td>
+
+							<!-- FORMATTING THE SUBMISSION DATE -->
+							<!-- 
+							  According to:
+							   https://docs.angularjs.org/api/ng/filter/date
+							  the following statement does not work because the AngularJS date filter needs
+							  the date as a Date object, milliseconds (string or number), or various ISO 8601
+							  datetime string formats (e.g., yyyy-MM-ddTHH:mm:ss.sssZ and its shorter
+							  versions like yyyy-MM-ddTHH:mmZ, yyyy-MM-dd or yyyyMMddTHHmmssZ).
+							   <td>{{oneSubmit.timestamp | date:"MMM d"}}</td>
+							-->
+							<!--
+							  The following statement uses a custom filter to extract just the month and day
+							  from the Java-style data string in the JSON file.
+							-->
+							<!-- <td>{{oneSubmit.timestamp | substring:4:11}}</td> -->
+							<!--
+							  However, given that we have the number of milliseconds that the time stamp
+							  represents, we can use the built-in AngularJS date filter on that.
+							-->
+							<td>{{oneSubmit.millisecs| date:"MMM d h:mm a"}}</td>
+
+							<!-- MAKING THE SUBMITTED URL A LIVE, CLICKABLE LINK -->
+							<td><a href="{{oneSubmit.student_url}}" target="_blank">URL</a></td>
+
+							<!-- FORMATTING STUDENT COMMENTS AS TRUE HTML -->
+							<!-- 
+							  The following statement outputs HTML without interpretation:
+							   <td>{{oneSubmit.comments}}</td> 
+							  To interpret the HTML tags in the output, use the syntax below, explained at:
+							   http://creative-punch.net/2014/04/preserve-html-text-output-angularjs/
+							-->
+							<td ng-bind-html="oneSubmit.comments | unsafe"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</body>
+</html>
