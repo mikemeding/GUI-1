@@ -1,15 +1,20 @@
 {
 	"pages": [
 		{
+			"pageName": "Cars",
+			"albums": [
+				{
+					"url": "<iframe class=\"imgur-album\" width=\"100%\" height=\"550\" frameborder=\"0\" src=\"//imgur.com/a/bQifH/embed\"></iframe>",
+					"description": "Collin's Subaru"
+				}
+			]
+		},
+		{
 			"pageName": "Sugarloaf",
 			"albums": [
 				{
 					"url": "<iframe class=\"imgur-album\" width=\"100%\" height=\"550\" frameborder=\"0\" src=\"//imgur.com/a/nsA3s/embed\"></iframe>",
 					"description": "Homecoming 2013 - Playing with puppy"
-				},
-				{
-					"url": "<iframe class=\"imgur-album\" width=\"100%\" height=\"550\" frameborder=\"0\" src=\"//imgur.com/a/5IeS0/embed\"></iframe>",
-					"description": "Reddit Posts"
 				}
 			]
 		},
