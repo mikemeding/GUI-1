@@ -10,7 +10,9 @@ var lastSortDescending = false;
 var myApp = angular.module('SubmissionsApp', []);
 
 // set a constant to the JSON file path
-myApp.constant("jsonUrl", "json/data.json");
+// I got the data directly from the WHO
+//http://apps.who.int/gho/athena/api/GHO/WHOSIS_000001.json?profile=simple
+myApp.constant("jsonUrl", "json/whoData.json");
 
 // add business logic to the app controller
 myApp.controller('SubmissionsCtrl',
@@ -30,28 +32,12 @@ myApp.controller('SubmissionsCtrl',
 									});                             //    error returned by the Ajax call
 
 						 // the following data is not used in the current version of this app
-						 $scope.date = new Date();          // get the current date and time
+//						 $scope.date = new Date();          // get the current date and time
 						 // see http://stackoverflow.com/questions/22962468/angularjs-display-current-date
 
-						 // get the creation date and time of the JSON file using an Ajax call to a PHP program
-//								$http.get("getFileCreationTime.php?filepath=" + jsonUrl)
-//										.success(function (data) {
-//											// convert the data returned to a JavaScript integer representing the number of
-//											//    milliseconds since the epoch (January 1, 1970 00:00:00 Greenich Mean Time)
-//											// this integer can then be used with the AngularJS data formatting filter
-//											$scope.dataFileCreationDate = (new Date(data)).getTime();
-//										})
-//										.error(function (error) {
-//											$scope.dataFileCreationDate = error;
-//										});
-
 						 // set the initial sort field (student name) and sort order (ascending)
-						 $scope.sortField = "student_name";
+						 $scope.sortField = "COUNTRY";
 						 $scope.sortDescending = false;
-
-						 // extract the assignment number for the page title
-//						 $scope.assnNo = jsonUrl.substring(6, 7);
-						 $scope.assnNo = 9; 
 
 						 /** 
 						  *  Sort column clicked in either ascending or descending order.
@@ -68,19 +54,11 @@ myApp.controller('SubmissionsCtrl',
 							 // true to sort in descending order, false to sort in ascending order
 							 // will be false if sorting a new column or last sort was descending
 							 if (colNo === 2) {
-								 // this is the Student Name column
-								 $scope.sortField = "student_name";
-								 // the following statement was used in a previous version of this app
-								 // before adding the orderBy filter to the ng-repeat directive
-								 //    $scope.jsonData.data.RECORDS.sort( sort_by( "student_name", boolSortAscending ) ) ;
+								 $scope.sortField = "COUNTRY";
 							 } else if (colNo === 3) {
-								 $scope.sortField = "student_address | upToAtSign";
+								 $scope.sortField = "Value";
 							 } else if (colNo === 4) {
-								 // this is the Submit Date & Time column
-								 $scope.sortField = "millisecs";
-								 // the following statement was used in a previous version of this app
-								 // before adding the orderBy filter to the ng-repeat directive
-								 //    $scope.jsonData.data.RECORDS.sort( sort_by( "millisecs", boolSortAscending ) ) ;
+								 $scope.sortField = "YEAR";
 							 }
 							 // save the sort paramesters for the next click
 							 lastSortDescending = $scope.sortDescending;

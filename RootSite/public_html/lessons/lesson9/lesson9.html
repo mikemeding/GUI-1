@@ -5,7 +5,7 @@
 		  File:  D:\H-Drive\91-461\461-2014-15f\assn09\MySolution\jmh-assn09-v4.html
 		  Jesse M. Heines, UMass Lowell Computer Science, heines@cs.uml.edu
 		  Copyright (c) 2014 by Jesse M. Heines.  All rights reserved.  May be freely 
-		   copied or excerpted for educational purposes with credit to the author.
+			copied or excerpted for educational purposes with credit to the author.
 		  updated by JMH on November 29, 2014 at 3:29 PM
 		  
 		  Note the need to name the SubmissionsApp in the html ng-app attribute above
@@ -22,7 +22,7 @@
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
 		<!-- CSS for this app -->
-		<link type="text/css" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.0/united/bootstrap.min.css">
 		<link type="text/css" rel="stylesheet" href="css/lesson9.css">
 
 
@@ -43,24 +43,25 @@
 			<div class="row">
 				<div class="jumbotron">
 					<!-- page head and version information -->
-					<h1 class="text-center" id="maintitle">91.461 Assignment No. {{assnNo}} Submissions</h1>
-					
+					<h1 class="text-center" id="maintitle">World Life Expectancy by Country</h1>
+
 					<!-- 
 			  show number of records in the JSON data
-			   http://stackoverflow.com/questions/19956074/how-can-i-show-a-count-of-rows-from-an-ng-repeat
+				http://stackoverflow.com/questions/19956074/how-can-i-show-a-count-of-rows-from-an-ng-repeat
 			  show date and time
-			   http://stackoverflow.com/questions/22962468/angularjs-display-current-date
-			   https://docs.angularjs.org/api/ng/filter/date 
+				http://stackoverflow.com/questions/22962468/angularjs-display-current-date
+				https://docs.angularjs.org/api/ng/filter/date 
 					-->
-					<h2>Try clicking the bold words to organize the table. <small>
-						(There are {{(jsonData.data.RECORDS).length}} total submissions.) 
-						<!--{{(jsonData.data.RECORDS).length}} submissions received as of--> 
-						<!--{{dataFileCreationDate| date:"MMMM d, yyyy"}} at {{dataFileCreationDate| date:"h:mm a"}}.-->
+					<h2>Try clicking the <strong>bold</strong> words to organize the table. <small>
+							(There are {{(jsonData.data.fact).length}} records.) 
 						</small>
 					</h2>
 				</div>
 
-
+				<div class="row pull-right col-lg-6 input-group">
+					<span class="input-group-addon">Search</span>
+					<input ng-model="query" type="text" class="form-control" placeholder="Ex: Sierra Leone">
+				</div>
 
 				<!-- the table controlled by the AngularJS controller -->
 				<table class="table table-striped" id="tblSubmissions">
@@ -68,11 +69,11 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th ng-click="sortColumn(2)">Student Name</th>
-							<th ng-click="sortColumn(3)">Grading File</th>
-							<th ng-click="sortColumn(4)">Submit Date &amp; Time</th>
-							<th>Submit Link</th>
-							<th>Student Comments</th>
+							<th ng-click="sortColumn(2)">Country</th>
+							<th ng-click="sortColumn(3)">Life expectancy at birth (years)</th>
+							<th ng-click="sortColumn(4)">Year</th>
+							<th>Sex</th>
+							<th>Region</th>
 						</tr>
 					</thead>
 					<!-- 
@@ -80,52 +81,26 @@
 					  the ng-model attribute causes the data to be re-rendered when the jsonData changes
 					-->
 					<tbody ng-model="jsonData">
-						<tr ng-repeat="oneSubmit in jsonData.data.RECORDS| orderBy : sortField : sortDescending">
+						<tr ng-repeat="oneSubmit in jsonData.data.fact| orderBy : sortField : sortDescending | filter:query">
 
 							<!-- the built-in AngularJS loop index -->
 							<td>{{$index| increment}}</td>
 
-							<!-- the student's first and last names only, in LastName, FirstName format -->
-							<td>{{oneSubmit.student_name| firstLastOnly}}</td>
+							<!--The country from which we are looking at data-->
+							<td>{{oneSubmit.COUNTRY}}</td>
 
-							<!-- 
-							  The student's grading file name is the part of his or her up to the @ sign
-							  followed by ".txt".
-							-->
-							<td>{{oneSubmit.student_address| upToAtSign}}.txt</td>
+							<!--Average life expectancy-->
+							<td>{{oneSubmit.Value}}</td>
 
-							<!-- FORMATTING THE SUBMISSION DATE -->
-							<!-- 
-							  According to:
-							   https://docs.angularjs.org/api/ng/filter/date
-							  the following statement does not work because the AngularJS date filter needs
-							  the date as a Date object, milliseconds (string or number), or various ISO 8601
-							  datetime string formats (e.g., yyyy-MM-ddTHH:mm:ss.sssZ and its shorter
-							  versions like yyyy-MM-ddTHH:mmZ, yyyy-MM-dd or yyyyMMddTHHmmssZ).
-							   <td>{{oneSubmit.timestamp | date:"MMM d"}}</td>
-							-->
-							<!--
-							  The following statement uses a custom filter to extract just the month and day
-							  from the Java-style data string in the JSON file.
-							-->
-							<!-- <td>{{oneSubmit.timestamp | substring:4:11}}</td> -->
-							<!--
-							  However, given that we have the number of milliseconds that the time stamp
-							  represents, we can use the built-in AngularJS date filter on that.
-							-->
-							<td>{{oneSubmit.millisecs| date:"MMM d h:mm a"}}</td>
+							<!--The year the data was aquired-->
+							<td>{{oneSubmit.YEAR}}</td>
 
-							<!-- MAKING THE SUBMITTED URL A LIVE, CLICKABLE LINK -->
-							<td><a href="{{oneSubmit.student_url}}" target="_blank">URL</a></td>
+							<!--If the data was for males or females-->
+							<td>{{oneSubmit.SEX}}</td>
 
-							<!-- FORMATTING STUDENT COMMENTS AS TRUE HTML -->
-							<!-- 
-							  The following statement outputs HTML without interpretation:
-							   <td>{{oneSubmit.comments}}</td> 
-							  To interpret the HTML tags in the output, use the syntax below, explained at:
-							   http://creative-punch.net/2014/04/preserve-html-text-output-angularjs/
-							-->
-							<td ng-bind-html="oneSubmit.comments | unsafe"></td>
+							<!--The region of the world that the country is in--> 
+							<td>{{oneSubmit.REGION}}</td>
+
 						</tr>
 					</tbody>
 				</table>
