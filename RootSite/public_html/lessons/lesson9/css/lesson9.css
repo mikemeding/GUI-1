@@ -3,10 +3,8 @@
     Author     : mike
 */
 
+/*angularjs cursor hotfix*/
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
 /*for some reason bootstrap defaults to using the I beam....*/
 th {cursor: pointer;}
-
-th:hover {
-	/*light blue*/
-	color: #0066ff;
-}

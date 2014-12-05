@@ -36,8 +36,22 @@ myApp.controller('SubmissionsCtrl',
 						 // see http://stackoverflow.com/questions/22962468/angularjs-display-current-date
 
 						 // set the initial sort field (student name) and sort order (ascending)
-						 $scope.sortField = "COUNTRY";
 						 $scope.sortDescending = false;
+						 $scope.sortField = "COUNTRY";
+
+						 // this is for dropdown menus only
+						 $scope.yearList = [
+							 {id: '1990', value: '1990'},
+							 {id: '2000', value: '2000'},
+							 {id: '2012', value: '2012'}
+						 ];
+						 $scope.sexList = [
+							 {id: 'Male', value: 'Male'},
+							 {id: 'Female', value: 'Female'},
+							 {id: 'Both sexes', value: 'Both sexes'}
+						 ];
+
+
 
 						 /** 
 						  *  Sort column clicked in either ascending or descending order.
@@ -57,8 +71,6 @@ myApp.controller('SubmissionsCtrl',
 								 $scope.sortField = "COUNTRY";
 							 } else if (colNo === 3) {
 								 $scope.sortField = "Value";
-							 } else if (colNo === 4) {
-								 $scope.sortField = "YEAR";
 							 }
 							 // save the sort paramesters for the next click
 							 lastSortDescending = $scope.sortDescending;

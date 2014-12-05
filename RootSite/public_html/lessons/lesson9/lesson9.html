@@ -2,7 +2,6 @@
 	<head>
 		<meta charset="utf-8">
 		<!--
-		  File:  D:\H-Drive\91-461\461-2014-15f\assn09\MySolution\jmh-assn09-v4.html
 		  Jesse M. Heines, UMass Lowell Computer Science, heines@cs.uml.edu
 		  Copyright (c) 2014 by Jesse M. Heines.  All rights reserved.  May be freely 
 			copied or excerpted for educational purposes with credit to the author.
@@ -12,6 +11,7 @@
 		  if we're going to use it in the angular.module function below.
 		
 		THIS CODE IS A BRANCH FROM Jesse M. Heines STARTER CODE
+		  Michael Meding, UMass Lowell Computer Science 
 		-->
 		<title>Assignment Submissions</title>
 
@@ -19,11 +19,17 @@
 		<link type="text/css" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.0/united/bootstrap.min.css">
 		<link type="text/css" rel="stylesheet" href="css/lesson9.css">
 
+		<!--jQuery from google CDN-->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 		<!-- CDN hosted AngularJS -->
-		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.js"></script>
 
 		<!--CDN bootstrap-->
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+		<!--CDN angular ui bootstrap-->
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap.js"></script>
 
 
 		<!-- my own collection of utility functions -->
@@ -50,24 +56,24 @@
 					<!-- 
 			  show number of records in the JSON data
 				http://stackoverflow.com/questions/19956074/how-can-i-show-a-count-of-rows-from-an-ng-repeat
-			  show date and time
-				http://stackoverflow.com/questions/22962468/angularjs-display-current-date
-				https://docs.angularjs.org/api/ng/filter/date 
 					-->
-					<h2>Try clicking the <strong>bold</strong> words to organize the table. <small>
+					<h2>Try clicking the <strong>orange</strong> words to organize the table. <small>
 							(There are {{(jsonData.data.fact).length}} records.) 
 						</small>
 					</h2>
 				</div>
 
 				<!--search bar-->
-				<div class="row pull-right col-lg-6 input-group">
-					<span class="input-group-addon">Search</span>
-					<input ng-model="query" type="text" class="form-control" placeholder="Ex: Sierra Leone">
+				<div class="row">
+					<div class="col-lg-offset-6 col-lg-6">
+						<h3>This data was collected by the W.H.O. in 2012</h3>
+						<div class="input-group">
+							<span class="input-group-addon">Search</span>
+							<input ng-model="query" type="text" class="form-control" placeholder="Ex: Sierra Leone">
+						</div>
+					</div>
 				</div>
 
-				<!--filter results section-->
-				
 
 				<!-- the table controlled by the AngularJS controller -->
 				<table class="table table-striped" id="tblSubmissions">
@@ -75,25 +81,40 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th ng-click="sortColumn(2)">Country</th>
-							<th ng-click="sortColumn(3)">Life expectancy at birth (years)</th>
-							<th ng-click="sortColumn(4)">Year</th>
-							<th>Sex</th>
+							<th ng-click="sortColumn(2)"><a href="#">Country</a></th>
+							<th ng-click="sortColumn(3)"><a href="#">Life expectancy at birth (years)</a></th>
+							<th> 
+								<!--Figured out nullable options and such,-->
+								<!--From: https://docs.angularjs.org/api/ng/directive/select-->
+								<span  class="nullable">
+									<select ng-model="yearSelected" ng-options="value.id for value in yearList">
+										<option value="">Year</option>
+									</select>
+								</span>
+							</th>
+							<th>  
+								<span  class="nullable">
+									<select ng-model="sexFilter" ng-options="value.id for value in sexList">
+										<option value="">Sex</option>
+									</select>
+								</span>
+							</th>
 							<th>Region</th>
 						</tr>
 					</thead>
 					<!-- 
 					  AngularJS template for each row of the table 
 					  the ng-model attribute causes the data to be re-rendered when the jsonData changes
+					  filter: <order>: true // signifies strict matching
 					-->
 					<tbody ng-model="jsonData">
-						<tr ng-repeat="oneSubmit in jsonData.data.fact| orderBy : sortField : sortDescending | filter:query">
+						<tr ng-repeat="oneSubmit in jsonData.data.fact| orderBy : sortField : sortDescending | filter:query | filter:yearSelected.value:true | filter:sexFilter.value:true ">
 
 							<!-- the built-in AngularJS loop index -->
 							<td>{{$index| increment}}</td>
 
 							<!--The country from which we are looking at data-->
-							<td>{{oneSubmit.COUNTRY}}</td>
+							<td>{{oneSubmit.COUNTRY| missingData}}</td>
 
 							<!--Average life expectancy-->
 							<td>{{oneSubmit.Value}}</td>
