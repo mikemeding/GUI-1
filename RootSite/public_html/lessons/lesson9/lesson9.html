@@ -15,15 +15,15 @@
 		-->
 		<title>Assignment Submissions</title>
 
+		<!-- CSS for this app -->
+		<link type="text/css" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.0/united/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/lesson9.css">
+
 		<!-- CDN hosted AngularJS -->
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.js"></script>
 
 		<!--CDN bootstrap-->
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-
-		<!-- CSS for this app -->
-		<link type="text/css" rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.0/united/bootstrap.min.css">
-		<link type="text/css" rel="stylesheet" href="css/lesson9.css">
 
 
 		<!-- my own collection of utility functions -->
@@ -41,6 +41,8 @@
 		<!-- the main view, controlled by AngularJS -->
 		<div class="container" ng-controller="SubmissionsCtrl">
 			<div class="row">
+
+				<!--title section-->
 				<div class="jumbotron">
 					<!-- page head and version information -->
 					<h1 class="text-center" id="maintitle">World Life Expectancy by Country</h1>
@@ -58,10 +60,14 @@
 					</h2>
 				</div>
 
+				<!--search bar-->
 				<div class="row pull-right col-lg-6 input-group">
 					<span class="input-group-addon">Search</span>
 					<input ng-model="query" type="text" class="form-control" placeholder="Ex: Sierra Leone">
 				</div>
+
+				<!--filter results section-->
+				
 
 				<!-- the table controlled by the AngularJS controller -->
 				<table class="table table-striped" id="tblSubmissions">

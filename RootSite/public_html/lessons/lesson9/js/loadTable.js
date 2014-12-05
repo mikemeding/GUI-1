@@ -7,7 +7,7 @@ var lastSortDescending = false;
 
 // set up AngularJS module, note that name must be the same as that in the 
 //    ng-app attribute of the html tag above
-var myApp = angular.module('SubmissionsApp', []);
+var myApp = angular.module('SubmissionsApp', ['ui.bootstrap']);
 
 // set a constant to the JSON file path
 // I got the data directly from the WHO
