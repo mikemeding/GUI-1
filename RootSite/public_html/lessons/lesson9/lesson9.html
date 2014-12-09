@@ -3,16 +3,16 @@
 	<head>
 		<meta charset="utf-8">
 		<!--
-		  Jesse M. Heines, UMass Lowell Computer Science, heines@cs.uml.edu
+		  THIS CODE IS A BRANCH FROM Jesse M. Heines STARTER CODE
+		  Michael Meding, UMass Lowell Computer Science 
+  
+		  CREDIT: Jesse M. Heines, UMass Lowell Computer Science, heines@cs.uml.edu
 		  Copyright (c) 2014 by Jesse M. Heines.  All rights reserved.  May be freely 
 			copied or excerpted for educational purposes with credit to the author.
 		  updated by JMH on November 29, 2014 at 3:29 PM
 		  
 		  Note the need to name the SubmissionsApp in the html ng-app attribute above
 		  if we're going to use it in the angular.module function below.
-		
-		THIS CODE IS A BRANCH FROM Jesse M. Heines STARTER CODE
-		  Michael Meding, UMass Lowell Computer Science 
 		-->
 		<title>Assignment Submissions</title>
 
@@ -59,25 +59,39 @@
 				http://stackoverflow.com/questions/19956074/how-can-i-show-a-count-of-rows-from-an-ng-repeat
 					-->
 					<h2>Try clicking the <strong>orange</strong> words to organize the table. <small>
-							(There are {{(jsonData.data.fact).length}} records.) 
+							(There are {{(jsonData.data.fact).length}} total records.) 
 						</small>
 					</h2>
 				</div>
 
-				<!--search bar-->
+				<!--search bar and table size-->
 				<div class="row">
-					<div class="col-lg-offset-6 col-lg-6">
-						<h3>This data was collected by the W.H.O. in 2012</h3>
-						<div class="input-group">
-							<span class="input-group-addon">Search</span>
-							<input ng-model="query" type="text" class="form-control" placeholder="Ex: Sierra Leone">
+					<div class="col-lg-offset-3 col-lg-6">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<h3>This data was collected by the W.H.O. in 2012</h3>
+							</div>
+							<div class="panel-body">
+								<div class="input-group">
+									<span class="input-group-addon">Search</span>
+									<input ng-model="query" type="text" class="form-control" placeholder="Ex: Sierra Leone">
+								</div>
+
+								<h4>Display top  
+									<!--select rate limit size-->
+									<!--http://stackoverflow.com/questions/17643361/ngrepeat-limiting-number-of-displayed-results-->
+									<!--http://stackoverflow.com/questions/18194255/how-to-have-a-default-option-in-select-box-angular-js-->
+									<select ng-init="limit = resultLimit[0]" ng-model="limit" ng-options="value for value in resultLimit">
+									</select>
+									results</h4>
+							</div>
 						</div>
 					</div>
 				</div>
 
 
 				<!-- the table controlled by the AngularJS controller -->
-				<table class="table table-striped" id="tblSubmissions">
+				<table class="table table-striped table-hover" id="tblSubmissions">
 					<!-- the column heads -->
 					<thead>
 						<tr>
@@ -109,7 +123,7 @@
 					  filter: <order>: true // signifies strict matching
 					-->
 					<tbody ng-model="jsonData">
-						<tr ng-repeat="oneSubmit in jsonData.data.fact| orderBy : sortField : sortDescending | filter:query | filter:yearSelected.value:true | filter:sexFilter.value:true ">
+						<tr ng-repeat="oneSubmit in jsonData.data.fact| orderBy : sortField : sortDescending | filter:query | filter:yearSelected.value:true | filter:sexFilter.value:true | limitTo:limit">
 
 							<!-- the built-in AngularJS loop index -->
 							<td>{{$index| increment}}</td>

@@ -1,3 +1,11 @@
+/* 
+ *  Michael Meding
+ *  CREDIT: Jesse M. Heines, UMass Lowell Computer Science, heines@cs.uml.edu
+ *  Copyright (c) 2014 by Jesse M. Heines.  All rights reserved.  May be freely 
+ *    copied or excerpted for educational purposes with credit to the author.
+ *  
+ */
+
 "use strict";  // to ensure that all variables are declared before use
 
 // the number of the last column sorted, initialized to the Student Name column
@@ -21,13 +29,13 @@ myApp.controller('SubmissionsCtrl',
 			*  @param $http   the built-in AngularJS http object containing the get function
 			*  @param jsonURL the app constant containing the JSON file path (defined above)
 			*/
-					 function ($scope, $http, jsonUrl) {
+					 function($scope, $http, jsonUrl) {
 						 $scope.jsonData = {};              // initialize an object in the model's scope
 						 $http.get(jsonUrl)                // perform the Ajax call
-									.success(function (data) {      // execute this function if the Ajax succeeds
+									.success(function(data) {      // execute this function if the Ajax succeeds
 										$scope.jsonData.data = data;   // set the model's jsonData.data property to the
 									})                               //    data returned by the Ajax call
-									.error(function (error) {      // execute this function if the Ajax fails
+									.error(function(error) {      // execute this function if the Ajax fails
 										$scope.jsonData.error = error; // set the model's jsonData.error property to the
 									});                             //    error returned by the Ajax call
 
@@ -38,6 +46,11 @@ myApp.controller('SubmissionsCtrl',
 						 // set the initial sort field (student name) and sort order (ascending)
 						 $scope.sortDescending = false;
 						 $scope.sortField = "COUNTRY";
+
+						// this is for the top results dropdown
+						 $scope.resultLimit = [
+							 20, 100, 1000
+						 ];
 
 						 // this is for dropdown menus only
 						 $scope.yearList = [
@@ -63,7 +76,7 @@ myApp.controller('SubmissionsCtrl',
 						  *    therefore easier to maintain.
 						  *  @param colNo the number of the column header clicked
 						  */
-						 $scope.sortColumn = function (colNo) {
+						 $scope.sortColumn = function(colNo) {
 							 $scope.sortDescending = lastSortColumnNo === colNo && !lastSortDescending;
 							 // true to sort in descending order, false to sort in ascending order
 							 // will be false if sorting a new column or last sort was descending
